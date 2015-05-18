@@ -50,8 +50,10 @@
     "serve-favicon": "~2.2.0",
     "twilio": "^2.2.0",
     "underscore": "^1.8.2"
-  }
+  },
   "devDependencies": {
-    "mocha": "^2.2.5"
+    "chai": "^2.3.0",
+    "mocha": "^2.2.5",
+    "nock": "^1.9.0"
   }
 }
