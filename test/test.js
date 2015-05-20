@@ -5,6 +5,7 @@ var Mandrill = require("../models/providers/email/mandrill")
 var Postmark = require("../models/providers/email/postmark")
 var Sendgrid = require("../models/providers/email/sendgrid")
 var Parse = require("../models/providers/push/parse")
+var Pushwoosh = require("../models/providers/push/pushwoosh")
 var Twilio = require("../models/providers/sms/twilio")
 
 describe('when email providers are online', function(){
@@ -28,11 +29,6 @@ describe('when email providers are online', function(){
 		})
 	});
 	it('mailgun result should be populated and err should be null', function(done){
-		// have service name and api keys
-		// initialize provider client with key
-		// validate keys by calling a function
-		// return callback of (err, result)
-		//var service = "sendgrid"
 		var apiUser = "ldksafjsd"
 		var domain = "ldksafjsd"
 		nock('https://api.mailgun.net:443/v2')
@@ -46,11 +42,6 @@ describe('when email providers are online', function(){
 		})
 	});
 	it('postmark result should be populated and err should be null', function(done){
-		// have service name and api keys
-		// initialize provider client with key
-		// validate keys by calling a function
-		// return callback of (err, result)
-		//var service = "sendgrid"
 		var serverKey = "ldksafjsd"
 		nock('https://api.postmarkapp.com:443')
 			.get('/stats/outbound/opens/emailclients?')
@@ -63,11 +54,6 @@ describe('when email providers are online', function(){
 		})
 	});
 	it('mandrill result should be populated and err should be null', function(done){
-		// have service name and api keys
-		// initialize provider client with key
-		// validate keys by calling a function
-		// return callback of (err, result)
-		//var service = "sendgrid"
 		var apiKey = "ldksafjsd"
 		nock('https://mandrillapp.com/api/1.0')
 			.post('/messages/search-time-series.json')
@@ -80,11 +66,6 @@ describe('when email providers are online', function(){
 		})
 	});
 	it('parse result should be populated and err should be null', function(done){
-		// have service name and api keys
-		// initialize provider client with key
-		// validate keys by calling a function
-		// return callback of (err, result)
-		//var service = "sendgrid"
 		var appID = "ldksafjsd"
 		var apiKey = "djbwhsdk"
 		nock('https://api.parse.com:443')
@@ -98,11 +79,6 @@ describe('when email providers are online', function(){
 		})
 	});
 	it('twilios result should be populated and err should be null', function(done){
-		// have service name and api keys
-		// initialize provider client with key
-		// validate keys by calling a function
-		// return callback of (err, result)
-		//var service = "sendgrid"
 		var accountSid = "ldksafjsd"
 		var authToken = "ldksafjsd"
 		nock.cleanAll()
@@ -116,15 +92,38 @@ describe('when email providers are online', function(){
 			done()
 		})
 	});
+	it('pushwoosh result should be populated and err should be null', function(done){
+		var app_code = "ldksafjsd"
+		var auth_token = "ldksafjsd"
+		// nock('https://api.twilio.com:433')
+		// 	.get('/2010-04-01/Accounts/ldksafjsd')
+		// 	.reply(200, {"status": "sent"});
+		pushwooshClient = new Pushwoosh(app_code, auth_token)
+		pushwooshClient.validate(function(error, result){
+			should.exist(result);
+			should.not.exist(error);
+			done()
+		})
+	});
+	// it('nexmo result should be populated and err should be null', function(done){
+	// 	var accountSid = "ldksafjsd"
+	// 	var authToken = "ldksafjsd"
+	// 	nock('https://api.twilio.com:433')
+	// 		.get('/2010-04-01/Accounts/ldksafjsd')
+	// 		.reply(200, {"status": "sent"});
+	// 	twilioClient = new Twilio(accountSid, authToken)
+	// 	twilioClient.validate(function(error, result){
+	// 		should.exist(result);
+	// 		should.not.exist(error);
+	// 		done()
+	// 	})
+	// });
+
+
 
 
 
 	it('sendgrid should not return result object when key is incorrect', function(done){
-		// have service name and api keys
-		// initialize provider client with key
-		// validate keys by calling a function
-		// return callback of (err, result)
-		//var service = "sendgrid"
 		var apiUser = "skhvkab"
 		var apiKey = "ldksafjsd"
 		//console.log(Sendgrid)
@@ -138,12 +137,7 @@ describe('when email providers are online', function(){
 			done()
 		})
 	});
-	it('mailguns should return result object when key is correct', function(done){
-		// have service name and api keys
-		// initialize provider client with key
-		// validate keys by calling a function
-		// return callback of (err, result)
-		//var service = "sendgrid"
+	it('mailgun should not return result object when key is incorrect', function(done){
 		var apiUser = "ldksafjsd"
 		var domain = "ldksafjsd"
 		nock('https://api.mailgun.net:443/v2')
@@ -156,12 +150,7 @@ describe('when email providers are online', function(){
 			done()
 		})
 	});
-	it('postmark should return result object when key is correct', function(done){
-		// have service name and api keys
-		// initialize provider client with key
-		// validate keys by calling a function
-		// return callback of (err, result)
-		//var service = "sendgrid"
+	it('postmark should not return result object when key is incorrect', function(done){
 		var serverKey = "ldksafjsd"
 		nock('https://api.postmarkapp.com:443')
 			.get('/stats/outbound/opens/emailclients?')
@@ -173,12 +162,7 @@ describe('when email providers are online', function(){
 			done()
 		})
 	});
-	it('mandrill should return result object when key is correct', function(done){
-		// have service name and api keys
-		// initialize provider client with key
-		// validate keys by calling a function
-		// return callback of (err, result)
-		//var service = "sendgrid"
+	it('mandrill should not return result object when key is incorrect', function(done){
 		var apiKey = "ldksafjsd"
 		nock('https://mandrillapp.com/api/1.0')
 			.post('/messages/search-time-series.json')
@@ -190,16 +174,11 @@ describe('when email providers are online', function(){
 			done()
 		})
 	});
-	it('parse should return result object when key is correct', function(done){
-		// have service name and api keys
-		// initialize provider client with key
-		// validate keys by calling a function
-		// return callback of (err, result)
-		//var service = "sendgrid"
+	it('parse should not return result object when key is incorrect', function(done){
 		var apiKey = "ldksafjsd"
 		nock('https://api.parse.com:443')
 			.get('/1/roles/')
-			.reply(500, {});
+			.reply(401, {"error": "bad key"});
 		parseClient = new Parse(apiKey)
 		parseClient.validate(function(error, result){
 			should.not.exist(result);
@@ -207,18 +186,14 @@ describe('when email providers are online', function(){
 			done()
 		})
 	});
-	it('twilio should return result object when key is correct', function(done){
-		// have service name and api keys
-		// initialize provider client with key
-		// validate keys by calling a function
-		// return callback of (err, result)
-		//var service = "sendgrid"
-		var apiKey = "ldksafjsd"
-		nock('https://api.parse.com:443')
-			.get('/1/roles/')
-			.reply(500, {});
-		parseClient = new Parse(apiKey)
-		parseClient.validate(function(error, result){
+	it('twilio should not return result object when key is incorrect', function(done){
+		var accountSid = "ldksafjsd"
+		var authToken = "dhkvbshk"
+		nock('https://api.parse.com')
+			.get('/2010-04-01/Accounts/ldksafjsd')
+			.reply(400, {"error": "bad key"});
+		twilioClient = new Twilio(accountSid, authToken)
+		twilioClient.validate(function(error, result){
 			should.not.exist(result);
 			should.exist(error);
 			done()

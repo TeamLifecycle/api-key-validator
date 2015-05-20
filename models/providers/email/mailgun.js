@@ -1,4 +1,6 @@
 var Mailgun, ServiceProvider;
+var helper = require("../helpers")
+//var ServiceProvider = require("../service_provider");
 
 Mailgun = function(apiKey, domain) {
   this.name = "mailgun";
@@ -6,11 +8,18 @@ Mailgun = function(apiKey, domain) {
     apiKey: apiKey,
     domain: domain
   };
-  this.checkKeys = function(callback) {
-    return this.client().get("/" + this.keys.domain + "/stats", {
+  this.validate = function(callback) {
+      return this.client().get("/" + this.keys.domain + "/stats", {
       event: ["sent"]
     }, function(error, mailgunStats) {
-      return callback(error, null);
+      console.log(mailgunStats, mailgunStats.length)
+      if(helper.isEmptyObject(mailgunStats)){
+        return callback(error, null);
+      }
+      else{
+        return callback(error, mailgunStats);
+      }
+      
     });
   };
   this.client = function() {
@@ -19,28 +28,15 @@ Mailgun = function(apiKey, domain) {
       domain: this.keys.domain
     });
   };
+
   return this;
 };
 
-ServiceProvider = require("../service_provider");
 
-Mailgun.prototype = new ServiceProvider;
+
+//Mailgun.prototype = new ServiceProvider;
 
 module.exports = Mailgun;
 
 
 
-this.mailgun = function(req, res) {
-  apiKey = req.body["api_key"];
-  domain = req.body["domain"];
-  if (!(apiKey && domain)) {
-    return res.sendStatus(403);
-  }
-  mailgunClient = new Mailgun(apiKey, domain);
-  return mailgunClient.checkKeys(function(err, data) {
-    if (err) {
-      return res.sendStatus(403);
-    }
-    return res.sendStatus(200);
-  });
-}

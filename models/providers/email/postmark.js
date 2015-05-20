@@ -1,16 +1,15 @@
 var Postmark, ServiceProvider, postmark;
-
-postmark = require("postmark");
+//var ServiceProvider = require("../service_provider");
+var postmark = require("postmark");
 
 Postmark = function(serverKey) {
   this.name = "postmark";
   this.keys = {
     serverKey: serverKey
   };
-  this.checkKeys = function(callback) {
-    console.log("checkkeys", this.client());
+  this.validate = function(callback) {
+    //console.log("checkkeys", this.client());
     return this.client().getEmailClientUsage({}, function(err, result) {
-      console.log(err, "---", result);
       return callback(err, result);
     });
   };
@@ -20,9 +19,9 @@ Postmark = function(serverKey) {
   return this;
 };
 
-ServiceProvider = require("../service_provider");
 
-Postmark.prototype = new ServiceProvider;
+
+// Postmark.prototype = new ServiceProvider;
 
 module.exports = Postmark;
 
