@@ -12,7 +12,7 @@ Mailgun = function(apiKey, domain) {
       return this.client().get("/" + this.keys.domain + "/stats", {
       event: ["sent"]
     }, function(error, mailgunStats) {
-      console.log(mailgunStats, mailgunStats.length)
+      //console.log(mailgunStats, mailgunStats.length)
       if(helper.isEmptyObject(mailgunStats)){
         return callback(error, null);
       }

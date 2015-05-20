@@ -1,4 +1,4 @@
-var Mandrill, ServiceProvider, mandrill;
+var Mandrill, ServiceProvider;
 //var ServiceProvider = require("../service_provider");
 var mandrill = require('mandrill-api/mandrill');
 

@@ -5,7 +5,7 @@ var Mandrill = require("../models/providers/email/mandrill")
 var Postmark = require("../models/providers/email/postmark")
 var Sendgrid = require("../models/providers/email/sendgrid")
 var Parse = require("../models/providers/push/parse")
-var Pushwoosh = require("../models/providers/push/pushwoosh")
+var Nexmo = require("../models/providers/sms/nexmo")
 var Twilio = require("../models/providers/sms/twilio")
 
 describe('when email providers are online', function(){
@@ -92,32 +92,20 @@ describe('when email providers are online', function(){
 			done()
 		})
 	});
-	it('pushwoosh result should be populated and err should be null', function(done){
-		var app_code = "ldksafjsd"
-		var auth_token = "ldksafjsd"
-		// nock('https://api.twilio.com:433')
-		// 	.get('/2010-04-01/Accounts/ldksafjsd')
-		// 	.reply(200, {"status": "sent"});
-		pushwooshClient = new Pushwoosh(app_code, auth_token)
-		pushwooshClient.validate(function(error, result){
+	//nock not intercepting for some reason
+	it('nexmo result should be populated and err should be null', function(done){
+		var api_key = "ldksafjsd"
+		var api_secret = "ldksafjsd"
+		nock('https://rest.nexmo.com:443/account')
+			.get('/get-balance?api_key=ldksafjsd&api_secret=ldksafjsd')
+			.reply(200, {"status": "sent"});
+		nexmoClient = new Nexmo(api_key, api_secret)
+		nexmoClient.validate(function(error, result){
 			should.exist(result);
 			should.not.exist(error);
 			done()
 		})
 	});
-	// it('nexmo result should be populated and err should be null', function(done){
-	// 	var accountSid = "ldksafjsd"
-	// 	var authToken = "ldksafjsd"
-	// 	nock('https://api.twilio.com:433')
-	// 		.get('/2010-04-01/Accounts/ldksafjsd')
-	// 		.reply(200, {"status": "sent"});
-	// 	twilioClient = new Twilio(accountSid, authToken)
-	// 	twilioClient.validate(function(error, result){
-	// 		should.exist(result);
-	// 		should.not.exist(error);
-	// 		done()
-	// 	})
-	// });
 
 
 
@@ -199,6 +187,22 @@ describe('when email providers are online', function(){
 			done()
 		})
 	});
+	//nock not intercepting for some reason
+	it('nexmo result should be populated and err should be null', function(done){
+		var api_key = "ldksafjsd"
+		var api_secret = "ldksafjsd"
+		nock('https://rest.nexmo.com:443/account')
+			.get('/get-balance?api_key=ldksafjsd&api_secret=ldksafjsd')
+			.reply(401, {"error-code":"401","error-code-label":"authentication failed"});
+		nexmoClient = new Nexmo(api_key, api_secret)
+		nexmoClient.validate(function(error, result){
+			should.not.exist(result);
+			should.exist(error);
+			done()
+		})
+	});
+
+
 });
 
 
