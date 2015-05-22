@@ -83,7 +83,7 @@ describe('when email providers are online', function(){
 		var authToken = "ldksafjsd"
 		nock.cleanAll()
 		nock('https://api.twilio.com')
-			.get('/2010-04-01/Accounts/ldksafjsd')
+			.get('/2010-04-01/Accounts/ldksafjsd.json')
 			.reply(200, {"status": "sent"});
 		twilioClient = new Twilio(accountSid, authToken)
 		twilioClient.validate(function(error, result){
