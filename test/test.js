@@ -129,8 +129,8 @@ describe('when email providers are online', function(){
 		application_key : "ldksafjsd",
 		application_secret : "ldksafjsd"
 		}
-		nock('https://messagingapi.sinch.com/v1/sms/+')
-			.post('')
+		nock('https://messagingapi.sinch.com')
+			.post('/v1/sms/+')
 			.reply(200, {"status": "sent"});
 		sinchClient = new Sinch(keys)
 		sinchClient.validate(function(error, result){
@@ -144,7 +144,7 @@ describe('when email providers are online', function(){
 		server_token : "ldksafjsd",
 		}
 		nock('https://api.zeropush.com')
-			.get('/verify_credentials?auth_token=ldksafjsd')
+			.get('/verify_credentials')
 			.reply(200, {"status": "sent"});
 		zeropushClient = new Zeropush(keys.server_token)
 		zeropushClient.validate(function(error, result){
@@ -169,7 +169,7 @@ describe('when email providers are online', function(){
 		var appId = "sfjvnss"
 		var secret = "ldksafjsd"
 		nock('https://api.pushbots.com')
-			.get('/deviceToken/one')
+			.put('/stats')
 			.reply(200, {"status": "success"});
 		pushbotsClient = new Pushbots(appId, secret)
 		pushbotsClient.validate(function(error, result){
@@ -181,23 +181,6 @@ describe('when email providers are online', function(){
 
 
 
-
-
-
-	it('sendgrid should not return result object when key is incorrect', function(done){
-		var apiUser = "skhvkab"
-		var apiKey = "ldksafjsd"
-		//console.log(Sendgrid)
-		sendgridClient = new Sendgrid(apiUser, apiKey)
-		nock('https://api.sendgrid.com:443/api')
-			.post('/stats.get.json')
-			.reply(403, {"error": "Bad username / password"});
-		sendgridClient.validate(function(error, result){
-			should.exist(error)
-			should.not.exist(result);
-			done()
-		})
-	});
 	it('sendgrid should not return result object when key is incorrect', function(done){
 		var apiUser = "skhvkab"
 		var apiKey = "ldksafjsd"
@@ -274,7 +257,7 @@ describe('when email providers are online', function(){
 			done()
 		})
 	});
-	it('nexmo result should be populated and err should be null', function(done){
+	it('nexmo should not return result object when key is incorrect', function(done){
 		var api_key = "ldksafjsd"
 		var api_secret = "ldksafjsd"
 		nock('https://rest.nexmo.com:443/account')
@@ -287,7 +270,7 @@ describe('when email providers are online', function(){
 			done()
 		})
 	});
-		it('plivo result should be populated and err should be null', function(done){
+		it('plivo should not return result object when key is incorrect', function(done){
 		var api_key = "ldksafjsd"
 		var api_secret = "ldksafjsd"
 		nock('https://rest.nexmo.com:443/account')
@@ -300,6 +283,58 @@ describe('when email providers are online', function(){
 			done()
 		})
 	});
-
-
+	it('onesignal should not return result object when key is incorrect', function(done){
+	var appId = "ldksafjsd";
+	nock('https://onesignal.com:443/api')
+		.get('/v1/apps')
+		.reply(400, {"errors":["Invalid or missing authentication token"]});
+	onesignalClient = new Onesignal(appId)
+	onesignalClient.validate(function(error, result){
+		should.not.exist(result);
+		should.exist(error);
+		done()
+	})
+	});
+	it('sinch result should be populated and err should be null', function(done){
+		keys = {
+		application_key : "ldksafjsd",
+		application_secret : "ldksafjsd"
+		}
+		nock('https://messagingapi.sinch.com')
+			.post('/v1/sms/+')
+			.reply(401, {"errorCode":40100,"message":"Authorization required"});
+		sinchClient = new Sinch(keys)
+		sinchClient.validate(function(error, result){
+			should.not.exist(result);
+			should.exist(error);
+			done()
+		})
+	});
+	it('zeropush result should be populated and err should be null', function(done){
+		keys = {
+		server_token : "ldksafjsd",
+		}
+		nock('https://api.zeropush.com')
+			.get('/verify_credentials')
+			.reply(401, {"error":"authorization error","message":"Please provide a valid authentication token parameter or HTTP Authorization header.","reference_url":"https://zeropush.com/documentation/api_reference"});
+		zeropushClient = new Zeropush(keys.server_token)
+		zeropushClient.validate(function(error, result){
+			should.not.exist(result);
+			should.exist(error);
+			done()
+		})
+	});
+	it('pushbots result should be populated and err should be null', function(done){
+		var appId = "sfjvnss"
+		var secret = "ldksafjsd"
+		nock('https://api.pushbots.com')
+			.put('/stats')
+			.reply(401, {"code":"InvalidCredentials","message":"Application ID and/or Secret unauthorized."});
+		pushbotsClient = new Pushbots(appId, secret)
+		pushbotsClient.validate(function(error, result){
+			should.not.exist(result);
+			should.exist(error);
+			done()
+		})
+	});
 });

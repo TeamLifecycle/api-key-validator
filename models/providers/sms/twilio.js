@@ -9,7 +9,6 @@ Twilio = function(accountSid, authToken) {
   };
   this.validate = function(callback) {
     return this.client().accounts(this.keys.accountSid).get(function(err, account) {
-      console.log(err, account)
       return callback(err, account);
     });
   };
@@ -18,9 +17,5 @@ Twilio = function(accountSid, authToken) {
   };
   return this;
 };
-
-
-
-// Twilio.prototype = new ServiceProvider;
 
 module.exports = Twilio;

@@ -6,11 +6,10 @@ Onesignal = function(app_id, api_key) {
 
   this.validate = function(callback) {
     request(this.getOptions(this.appId), function(err, result) {
-    console.log(err, result)
-    if (err) {
-      return callback(err, null);
-    } else {
+    if (result.statusCode === 200) {
       return callback(null, result);
+    } else {
+      return callback(result.body, null);
     }
 });
 }

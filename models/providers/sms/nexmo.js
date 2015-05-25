@@ -7,7 +7,6 @@ Nexmo = function(api_key, api_secret){
   	};
   	this.validate = function(callback){
   		return this.client().checkBalance(function(error, response){
-  			//console.log(error, response)
   			if ("error-code" in response){
   				return callback(response, null)
   			}
