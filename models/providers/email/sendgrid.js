@@ -1,6 +1,5 @@
 var Sendgrid, ServiceProvider, sendgrid;
 var sendgrid = require("sendgrid-extended");
-//var ServiceProvider = require("../service_provider");
 Sendgrid = function(apiUser, apiKey) {
   this.name = "sendgrid";
   this.keys = {
@@ -14,7 +13,6 @@ Sendgrid = function(apiUser, apiKey) {
         }
         else{
           return callback(null, data);
-
         }
     });
   };
@@ -23,8 +21,4 @@ Sendgrid = function(apiUser, apiKey) {
   };
   return this;
 };
-// Sendgrid.prototype = new ServiceProvider;
-// ​
 module.exports = Sendgrid;
-
-
