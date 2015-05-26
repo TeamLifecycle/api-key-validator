@@ -1,15 +1,13 @@
-var Mandrill, ServiceProvider;
-//var ServiceProvider = require("../service_provider");
+var Mandrill;
 var mandrill = require('mandrill-api/mandrill');
-
 Mandrill = function(apiKey) {
   this.name = "mandrill";
   this.keys = {
     apiKey: apiKey
   };
   this.validate = function(callback) {
-    return this.client().messages.searchTimeSeries({}, (function(result) {
-      return callback(null, result);
+    return this.client().messages.searchTimeSeries({}, (function(response) {
+      return callback(null, response);
     }), function(e) {
       return callback(e);
     });
@@ -19,11 +17,4 @@ Mandrill = function(apiKey) {
   };
   return this;
 };
-
-
-
-// Mandrill.prototype = new ServiceProvider;
 module.exports = Mandrill;
-
-
-

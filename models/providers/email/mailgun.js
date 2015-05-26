@@ -1,7 +1,5 @@
-var Mailgun, ServiceProvider;
+var Mailgun;
 var helper = require("../helpers")
-//var ServiceProvider = require("../service_provider");
-
 Mailgun = function(apiKey, domain) {
   this.name = "mailgun";
   this.keys = {
@@ -12,14 +10,12 @@ Mailgun = function(apiKey, domain) {
       return this.client().get("/" + this.keys.domain + "/stats", {
       event: ["sent"]
     }, function(error, mailgunStats) {
-      //console.log(mailgunStats, mailgunStats.length)
       if(helper.isEmptyObject(mailgunStats)){
         return callback(error, null);
       }
       else{
         return callback(error, mailgunStats);
       }
-      
     });
   };
   this.client = function() {
@@ -28,15 +24,6 @@ Mailgun = function(apiKey, domain) {
       domain: this.keys.domain
     });
   };
-
   return this;
 };
-
-
-
-//Mailgun.prototype = new ServiceProvider;
-
 module.exports = Mailgun;
-
-
-

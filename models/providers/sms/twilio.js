@@ -1,6 +1,4 @@
-var Twilio; //ServiceProvider;
-//var ServiceProvider = require("../service_provider");
-
+var Twilio;
 Twilio = function(accountSid, authToken) {
   this.name = "twilio";
   this.keys = {

@@ -1,4 +1,4 @@
-var Pushbots;//, ServiceProvider;
+var Pushbots;
 var PushBots = require('pushbots');
 var request = require("request");
 Pushbots = function(appId, secret) {

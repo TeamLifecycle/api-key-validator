@@ -1,5 +1,4 @@
-var Parse;//, ServiceProvider;
-//var ServiceProvider = require("../service_provider");
+var Parse;
 Parse = function(appId, apiKey) {
   this.name = "parse";
   this.keys = {
@@ -8,7 +7,6 @@ Parse = function(appId, apiKey) {
   };
   this.validate = function(callback) {
     return this.client().getRoles(function(err, resp) {
-      //console.log(err, resp);
       return callback(err, resp);
     });
   };
@@ -20,11 +18,4 @@ Parse = function(appId, apiKey) {
   };
   return this;
 };
-
-
-
-// Parse.prototype = new ServiceProvider;
-
 module.exports = Parse;
-
-

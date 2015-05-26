@@ -1,5 +1,4 @@
-var Postmark, ServiceProvider, postmark;
-//var ServiceProvider = require("../service_provider");
+var Postmark, postmark;
 var postmark = require("postmark");
 
 Postmark = function(serverKey) {
@@ -8,7 +7,6 @@ Postmark = function(serverKey) {
     serverKey: serverKey
   };
   this.validate = function(callback) {
-    //console.log("checkkeys", this.client());
     return this.client().getEmailClientUsage({}, function(err, result) {
       return callback(err, result);
     });
@@ -18,13 +16,4 @@ Postmark = function(serverKey) {
   };
   return this;
 };
-
-
-
-// Postmark.prototype = new ServiceProvider;
-
 module.exports = Postmark;
-
-
-
-

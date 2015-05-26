@@ -1,8 +1,11 @@
 {
   "name": "api-key-validation",
   "version": "1.0.0",
-  "description": "Validate api keys for twilio, sendgrid, mandrill, postmark",
-  "main": "verify-keys.js",
+  "description": "A package to easily validate api keys for mailgun, mandrill, postmark, sendgrid, onesignal, parse, pushbots, zeropush, nexmo, plivo, sinch, and twilio",
+  "main": "example.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
     "test": "mocha"
   },
@@ -13,47 +16,34 @@
   "keywords": [
     "api",
     "validation",
-    "apikeys",
-    "keys"
+    "verification",
+    "verify",
+    "key"
   ],
-  "author": "Tim Giblin & Jake Mooney",
+  "author": "Jake Mooney & Tim Giblin",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/VennHQ/api-key-validation/issues"
   },
   "homepage": "https://github.com/VennHQ/api-key-validation#readme",
-  "dependencies": {
-    "async": "^0.9.0",
-    "aws-sdk": "^2.1.14",
-    "body-parser": "~1.10.0",
-    "coffee-script": "~1.8.0",
-    "compression": "~1.3.0",
-    "cookie-parser": "~1.3.3",
-    "express": "~4.11.0",
-    "express-handlebars": "~1.1.0",
-    "fs": "0.0.2",
-    "glob": "~4.3.1",
-    "mailgun-js": "^0.6.8",
-    "mandrill-api": "^1.0.41",
-    "messagebus": "^5.0.0",
-    "method-override": "~2.3.0",
-    "modulus": "^3.5.0",
-    "moment": "^2.9.0",
-    "mongoose": "^4.0.1",
-    "morgan": "~1.5.0",
-    "nightmare": "^1.7.0",
-    "node-parse-api": "^0.3.5",
-    "postmark": "^1.0.0",
-    "request": "^2.51.0",
-    "sendgrid-extended": "^1.6.4",
-    "serve-favicon": "~2.2.0",
-    "twilio": "^2.2.0",
-    "underscore": "^1.8.2"
-  },
   "devDependencies": {
     "chai": "^2.3.0",
     "mocha": "^2.2.5",
+    "nock": "^1.9.0"
+  },
+  "dependencies": {
+    "chai": "^2.3.0",
+    "easynexmo": "^0.6.2",
+    "mailgun-js": "^0.6.9",
+    "mandrill-api": "^1.0.45",
     "nock": "^1.9.0",
-    "pushwoosh-client": "^1.0.2"
+    "node-parse-api": "^0.3.5",
+    "nzero-push": "^2.1.2",
+    "plivo-node": "^0.2.5",
+    "postmark": "^1.0.0",
+    "pushbots": "^0.0.1",
+    "request": "^2.55.0",
+    "sendgrid-extended": "^1.6.5",
+    "twilio": "^2.2.0"
   }
 }

@@ -1,4 +1,4 @@
-var Sendgrid, ServiceProvider, sendgrid;
+var Sendgrid, sendgrid;
 var sendgrid = require("sendgrid-extended");
 Sendgrid = function(apiUser, apiKey) {
   this.name = "sendgrid";

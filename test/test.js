@@ -338,4 +338,163 @@ describe('when email providers are online', function(){
 			done()
 		})
 	});
+
+
+
+	it('sendgrid should not return result object when key is incorrect', function(done){
+		var apiUser = "skhvkab"
+		var apiKey = ""
+		//console.log(Sendgrid)
+		var sendgridClient = new Sendgrid(apiUser, apiKey)
+		nock('https://api.sendgrid.com:443/api')
+			.post('/stats.get.json')
+			.reply(403, {"error": "Bad username / password"});
+		sendgridClient.validate(function(error, result){
+			should.exist(error)
+			should.not.exist(result);
+			done()
+		})
+	});
+	it('mailgun should not return result object when key is incorrect', function(done){
+		var apiUser = "ldksafjsd"
+		var domain = "ldksafjsd"
+		nock('https://api.mailgun.net:443/v2')
+			.get('/ldksafjsd/stats?event=sent')
+			.reply(401,{});
+		var mailgunClient = new Mailgun(apiUser, domain)
+		mailgunClient.validate(function(error, result){
+			should.not.exist(result);
+			should.exist(error);
+			done()
+		})
+	});
+	it('postmark should not return result object when key is incorrect', function(done){
+		var serverKey = "ldksafjsd"
+		nock('https://api.postmarkapp.com:443')
+			.get('/stats/outbound/opens/emailclients?')
+		 	.reply(401, {"ErrorCode":10,"Message":"Bad or missing Server API token."});
+		var postmarkClient = new Postmark(serverKey)
+		postmarkClient.validate(function(error, result){
+			should.not.exist(result);
+			should.exist(error);
+			done()
+		})
+	});
+	it('mandrill should not return result object when key is incorrect', function(done){
+		var apiKey = "ldksafjsd"
+		nock('https://mandrillapp.com/api/1.0')
+			.post('/messages/search-time-series.json')
+			.reply(500, {"status":"error","code":-1,"name":"Invalid_Key","message":"Invalid API key"});
+		var mandrillClient = new Mandrill(apiKey)
+		mandrillClient.validate(function(error, result){
+			should.not.exist(result);
+			should.exist(error);
+			done()
+		})
+	});
+	it('parse should not return result object when key is incorrect', function(done){
+		var apiKey = "ldksafjsd"
+		nock('https://api.parse.com:443')
+			.get('/1/roles/')
+			.reply(401, {"error": "bad key"});
+		var parseClient = new Parse(apiKey)
+		parseClient.validate(function(error, result){
+			should.not.exist(result);
+			should.exist(error);
+			done()
+		})
+	});
+	it('twilio should not return result object when key is incorrect', function(done){
+		var accountSid = "ldksafjsd"
+		var authToken = "dhkvbshk"
+		nock('https://api.twilio.com')
+			.get('/2010-04-01/Accounts/ldksafjsd')
+			.reply(400, {"error": "bad key"});
+		var twilioClient = new Twilio(accountSid, authToken)
+		twilioClient.validate(function(error, result){
+			should.not.exist(result);
+			should.exist(error);
+			done()
+		})
+	});
+	it('nexmo should not return result object when key is incorrect', function(done){
+		var api_key = "ldksafjsd"
+		var api_secret = "ldksafjsd"
+		nock('https://rest.nexmo.com:443/account')
+			.get('/get-balance?api_key=ldksafjsd&api_secret=ldksafjsd')
+			.reply(401, {"error-code":"401","error-code-label":"authentication failed"});
+		var nexmoClient = new Nexmo(api_key, api_secret)
+		nexmoClient.validate(function(error, result){
+			should.not.exist(result);
+			should.exist(error);
+			done()
+		})
+	});
+		it('plivo should not return result object when key is incorrect', function(done){
+		var api_key = "ldksafjsd"
+		var api_secret = "ldksafjsd"
+		nock('https://rest.nexmo.com:443/account')
+			.get('/get-balance?api_key=ldksafjsd&api_secret=ldksafjsd')
+			.reply(500, {"error-code":"401","error-code-label":"authentication failed"});
+		var nexmoClient = new Nexmo(api_key, api_secret)
+		nexmoClient.validate(function(error, result){
+			should.not.exist(result);
+			should.exist(error);
+			done()
+		})
+	});
+	it('onesignal should not return result object when key is incorrect', function(done){
+	var appId = "ldksafjsd";
+	nock('https://onesignal.com:443/api')
+		.get('/v1/apps')
+		.reply(400, {"errors":["Invalid or missing authentication token"]});
+	var onesignalClient = new Onesignal(appId)
+	onesignalClient.validate(function(error, result){
+		should.not.exist(result);
+		should.exist(error);
+		done()
+	})
+	});
+	it('sinch result should be populated and err should be null', function(done){
+		var keys = {
+		application_key : "ldksafjsd",
+		application_secret : "ldksafjsd"
+		}
+		nock('https://messagingapi.sinch.com')
+			.post('/v1/sms/+')
+			.reply(401, {"errorCode":40100,"message":"Authorization required"});
+		var sinchClient = new Sinch(keys)
+		sinchClient.validate(function(error, result){
+			should.not.exist(result);
+			should.exist(error);
+			done()
+		})
+	});
+	it('zeropush result should be populated and err should be null', function(done){
+		var keys = {
+		server_token : "ldksafjsd",
+		}
+		nock('https://api.zeropush.com')
+			.get('/verify_credentials')
+			.reply(401, {"error":"authorization error","message":"Please provide a valid authentication token parameter or HTTP Authorization header.","reference_url":"https://zeropush.com/documentation/api_reference"});
+		var zeropushClient = new Zeropush(keys.server_token)
+		zeropushClient.validate(function(error, result){
+			should.not.exist(result);
+			should.exist(error);
+			done()
+		})
+	});
+	it('pushbots result should be populated and err should be null', function(done){
+		var appId = "sfjvnss"
+		var secret = "ldksafjsd"
+		nock('https://api.pushbots.com')
+			.put('/stats')
+			.reply(401, {"code":"InvalidCredentials","message":"Application ID and/or Secret unauthorized."});
+		var pushbotsClient = new Pushbots(appId, secret)
+		pushbotsClient.validate(function(error, result){
+			should.not.exist(result);
+			should.exist(error);
+			done()
+		})
+	});
 });
