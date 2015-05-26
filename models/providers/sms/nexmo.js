@@ -1,18 +1,21 @@
 var Nexmo;
-Nexmo = function(api_key, api_secret){
+var helper = require("../helpers")
+
+Nexmo = function(keys){
 	this.name = "nexmo";
-	this.keys = {
-    	api_key: api_key,
-    	api_secret: api_secret
-  	};
+	this.keys = keys;
   	this.validate = function(callback){
-  		return this.client().checkBalance(function(error, response){
+			this.keyErrors = helper.validateNexmoCall(this.keys);
+	    if(this.keyErrors.length!=0){
+	      console.log(this.keyErrors);
+	      return callback(this.keyErrors, null);
+	    }
+			return this.client().checkBalance(function(error, response){
   			if ("error-code" in response){
   				return callback(response, null)
   			}
   			else{
   				return callback(null, response);
-
   			}
    		})
   	}

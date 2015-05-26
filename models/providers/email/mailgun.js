@@ -1,12 +1,14 @@
 var Mailgun;
 var helper = require("../helpers")
-Mailgun = function(apiKey, domain) {
+Mailgun = function(keys) {
   this.name = "mailgun";
-  this.keys = {
-    apiKey: apiKey,
-    domain: domain
-  };
+  this.keys = keys;
   this.validate = function(callback) {
+    this.keyErrors = helper.validateMailgunCall(this.keys);
+    if(this.keyErrors.length!=0){
+      console.log(this.keyErrors);
+      return callback(this.keyErrors, null);
+    }
       return this.client().get("/" + this.keys.domain + "/stats", {
       event: ["sent"]
     }, function(error, mailgunStats) {

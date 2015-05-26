@@ -1,12 +1,15 @@
 var Sendgrid, sendgrid;
 var sendgrid = require("sendgrid-extended");
-Sendgrid = function(apiUser, apiKey) {
+var helper = require("../helpers")
+Sendgrid = function(keys) {
   this.name = "sendgrid";
-  this.keys = {
-    apiUser: apiUser,
-    apiKey: apiKey
-  };
+  this.keys = keys;
   this.validate = function(callback) {
+    this.keyErrors = helper.validateSendgridCall(this.keys);
+    if(this.keyErrors.length!=0){
+      console.log(this.keyErrors);
+      return callback(this.keyErrors, null);
+    }
     return this.client().stats({}, function(err, data) {
         if(data && data["error"]){
           return callback(data["error"], null);

@@ -1,11 +1,15 @@
+var helper = require("../helpers")
 var Mandrill;
 var mandrill = require('mandrill-api/mandrill');
-Mandrill = function(apiKey) {
+Mandrill = function(keys) {
   this.name = "mandrill";
-  this.keys = {
-    apiKey: apiKey
-  };
+  this.keys = keys;
   this.validate = function(callback) {
+    this.keyErrors = helper.validateMandrillCall(this.keys);
+    if(this.keyErrors.length!=0){
+      console.log(this.keyErrors);
+      return callback(this.keyErrors, null);
+    }
     return this.client().messages.searchTimeSeries({}, (function(response) {
       return callback(null, response);
     }), function(e) {

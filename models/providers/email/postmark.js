@@ -1,12 +1,16 @@
 var Postmark, postmark;
 var postmark = require("postmark");
+var helper = require("../helpers")
 
-Postmark = function(serverKey) {
+Postmark = function(keys) {
   this.name = "postmark";
-  this.keys = {
-    serverKey: serverKey
-  };
+  this.keys = keys;
   this.validate = function(callback) {
+    this.keyErrors = helper.validatePostmarkCall(this.keys);
+    if(this.keyErrors.length!=0){
+      console.log(this.keyErrors.length, this.keyErrors);
+      return callback(this.keyErrors, null);
+    }
     return this.client().getEmailClientUsage({}, function(err, result) {
       return callback(err, result);
     });

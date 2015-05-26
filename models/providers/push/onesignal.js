@@ -1,10 +1,16 @@
 var Onesignal;
 var request = require('request');
-Onesignal = function(app_id, api_key) {
-  this.name = "onesignal"
-	this.appId = app_id;
+var helper = require("../helpers")
 
+Onesignal = function(keys) {
+  this.name = "onesignal"
+	this.keys = keys;
   this.validate = function(callback) {
+    this.keyErrors = helper.validateOnesignalCall(this.keys);
+    if(this.keyErrors.length!=0){
+      console.log(this.keyErrors);
+      return callback(this.keyErrors, null);
+    }
     request(this.getOptions(this.appId), function(err, result) {
     if (result.statusCode === 200) {
       return callback(null, result);

@@ -1,16 +1,20 @@
 var plivo = require('plivo-node');
 var Plivo;
 var request = require('request');
-Plivo = function(authId, authToken){
+var helper = require("../helpers")
+
+Plivo = function(keys){
 	this.name = "plivo";
-	this.keys = {
-		authId : authId,
-		authToken : authToken
-	};
+	this.keys = keys;
 	this.validate = function(callback) {
+		this.keyErrors = helper.validatePlivoCall(this.keys);
+		if(this.keyErrors.length!=0){
+			console.log(this.keyErrors);
+			return callback(this.keyErrors, null);
+		}
 		request(this.getOptions(this.keys.authId, this.keys.authToken), function(err, result) {
-		if (result.body === '{"code":"InvalidCredentials","message":"Application ID and/or Secret unauthorized."}') {
-			return callback(err, null);
+		if (result.statusCode==500) {
+			return callback(result.body, null);
 		}
 		else return callback(null, result);
 	});

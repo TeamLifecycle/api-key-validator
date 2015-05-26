@@ -1,13 +1,16 @@
 var Pushbots;
 var PushBots = require('pushbots');
 var request = require("request");
-Pushbots = function(appId, secret) {
-  this.name = "pushbots"
-  this.keys = {
-    appId : appId,
-    secret : secret
-  }
+var helper = require("../helpers")
+Pushbots = function(keys) {
+  this.name = "pushbots";
+  this.keys = keys;
   this.validate = function(callback) {
+    this.keyErrors = helper.validatePushbotsCall(this.keys);
+    if(this.keyErrors.length!=0){
+      console.log(this.keyErrors);
+      return callback(this.keyErrors, null);
+    }
     request(this.putOptions(this.keys), function(err, result) {
     if(result.statusCode==401) return callback(result.body, null);
     else return callback(null, result);

@@ -1,12 +1,16 @@
 var Zeropush;
 var zeroPush = require("nzero-push")
 var request = require("request");
-Zeropush = function(server_token) {
+var helper = require("../helpers")
+Zeropush = function(keys) {
   this.name = "parse";
-  this.keys = {
-    server_token: server_token
-  };
+  this.keys = keys;
   this.validate = function(callback) {
+    this.keyErrors = helper.validateZeropushCall(this.keys);
+    if(this.keyErrors.length!=0){
+      console.log(this.keyErrors);
+      return callback(this.keyErrors, null);
+    }
     request(this.getOptions(this.keys), function(err, result) {
     if (result.statusCode === 401) return callback(result.body, null)
     else return callback(null, result)
