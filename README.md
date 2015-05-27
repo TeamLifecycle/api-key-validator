@@ -7,7 +7,7 @@ Validate api keys for major email, sms, or push notification providers quickly a
 
 ## Installation
 ``` bash
-npm install api-key-validator
+npm install api-key-validat
 ```
 
 ## Validate (serviceName, keys, callback)
