@@ -13,7 +13,7 @@ npm install api-key-validator
 ## Validate (serviceName, keys, callback)
 
 |serviceName | keys |
----------------------
+|----------|-----------|
 | "mailgun" | {api_user, domain}  |
 | "mandrill" | {api_key}          |
 | "postmark" | {server_key}       |
