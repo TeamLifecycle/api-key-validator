@@ -1,6 +1,6 @@
-# Venn Email
+# API Key Validation
 
-[ ![Codeship Status for VennHQ/api-key-validation](CHANGEhttps://codeship.com/projects/40a5efb0-c00d-0132-200e-021ec7688aff/status?branch=master)](CHANGEhttps://codeship.com/projects/73117)
+[ ![Codeship Status for VennHQ/api-key-validation](https://codeship.com/projects/84e0b4a0-e605-0132-9e91-46daeabcd7f9/status?branch=master)](https://codeship.com/projects/82171)
 
 Validate api keys for major email, sms, or push notification providers quickly and easily. Catch the problem early.
 
@@ -10,92 +10,39 @@ Validate api keys for major email, sms, or push notification providers quickly a
 npm install api-key-validation
 ```
 
-## Email
+## Validate (serviceName, keys, callback)
 
-Parameters : (service, keys)
+|serviceName | keys |
 _________________________________
-| "mailgun", {api_user, domain}  |
-| "mandrill", {api_key}          |
-| "postmark", {server_key}       |
-| "sendgrid, {sendgrid}          |
+| "mailgun" | {api_user, domain}  |
+| "mandrill" | {api_key}          |
+| "postmark" | {server_key}       |
+| "sendgrid" | {api_user, api_key}          |
 
-#### initialize(service, keys)
+| "nexmo" | {api_key, api_secret}                 |
+| "plivo" | {auth_id, auth_token}                 |
+| "sinch" | {application_key, application_secret} |
+| "twilio" | {account_sid, auth_token}             |
+
+| "onesignal" | {app_id}         |
+| "parse" | {app_id, api_key}    |
+| "pushbots" | {app_id, secret}  |
+| "zeropush" | {server_token}     |
+
+
 #### Example
 ``` javascript
-var apiKeyValidator = require('api-key-validation');
+var apiKeyValidator = require('api-key-validator');
 
 var keys = {
-    apiUser: "123123",
-    apiKey: "2342394"
+    api_user: "cx34554cvd234sdfsd34fsdf123123",
+    api_key: "2342334534fbdf29sdfsbfbdfsd4"
 }
+
 apiKeyValidator.validate("sendgrid", keys, function(err, result){
     console.log(err, result);
-})
-	// api key valid if no error
 });
-```
 
-## SMS
-
-Parameters : (service, keys)
-_________________________________
-| "nexmo", {api_key, api_secret}                 |
-| "plivo", {auth_id, auth_token}                 |
-| "sinch", {application_key, application_secret} |
-| "twilio, {account_sid, auth_token}             |
-
-#### initialize(keys)
-
-#### validate(callback)
-|example                                      |
-|---------------------------------------------|
-|mandrillKeyVal.validate(function(err,result) |
-
-#### Example
-``` javascript
-var apiKeyValidator = require('api-key-validation');
-
-var keys = {
-	account_sid : "ldksafjsd",
-	auth_token : "ldksafjsd"
-}
-apiKeyValidator.validate("twilio", keys, function(err, result){
-    console.log(err, result);
-})
-	// api key valid if no error
-});
-```
-
-## Push Notification
-
-Parameters : (service, keys)
-_________________________________
-| "onesignal", {app_id}         |
-| "parse", {app_id, api_key}    |
-| "pushbots", {app_id, secret}  |
-| "zeropush, {server_token}     |
-
-#### initialize(keys)
-
-#### validate(data, callback)
-|params       |type   |description             |example                    |
-|-------------|-------|------------------------|---------------------------|
-|Service      |String |name of service provider|twilio                     |
-|keys         |String |dictionary of keys      |{apiKey : 64d2fa24h3sp3e8} |
-
-#### Example
-``` javascript
-var apiKeyValidator = require('api-key-validation');
-
-var keys = {
-    api_id: "123123",
-    api_key: "2342394"
-}
-apiKeyValidator.validate("parse", keys, function(err, result){
-    console.log(err, result);
-})
-	// api key valid if no error
-});
 ```
 
 ## Development
@@ -124,7 +71,7 @@ mocha
   3. Follow instructions in the template file to create tests for the new
 	   service
 2. Create the New Service Provider
-  1. Install the service provider's npm package as a dependency
+  1. Install the service provider's npm package as a dependency, or hit their rest API through npm request package
   2. Create a new file of the form `lib/models/services/service_type
 	   /provider_name.js`
   3. Decide how you want to test if the provided keys are valid.
@@ -135,10 +82,10 @@ mocha
 		 null if they are not.
 3. Edit `lib/index.js`
   1. Require the newly created service provider
-  ``` javascript
+  ```js
   var ServiceName = require('./providers/service_type/service_name');
   ```
   2. Add the newly created service provider to `apiKeyValidator`
   ``` javascript
-	if (service == "serive_name") Serive_name.validate(keys);
+	if (service == "service_name") Service_name.validate(keys);
   ```
