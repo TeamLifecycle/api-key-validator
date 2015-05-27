@@ -125,7 +125,7 @@ describe('when email providers are online', function(){
 
 
 
-describe('when email providers are online', function(){
+describe('when the key validation function is called', function(){
   it('sendgrid should return an error if the a parameter is missing', function(done){
 		var keys = {
 			apiUser : "skhvkab",
