@@ -22,45 +22,46 @@ describe('when email providers are online', function(){
 		})
 	});
   it('zeropush result should be populated and err should be null', function(done){
-  var keys = {
-  server_token : "ldksafjsd",
-  }
-  nock('https://api.zeropush.com')
-    .get('/verify_credentials')
-    .reply(200, {"status": "sent"});
-  var zeropushClient = new Zeropush(keys)
-  zeropushClient.validate(function(error, result){
-    should.exist(result);
-    should.not.exist(error);
-    done()
-  })
+    var keys = {
+      server_token : "ldksafjsd",
+    }
+    nock('https://api.zeropush.com')
+      .get('/verify_credentials')
+      .reply(200, {"status": "sent"});
+    var zeropushClient = new Zeropush(keys)
+    zeropushClient.validate(function(error, result){
+      should.exist(result);
+      should.not.exist(error);
+      done()
+    })
   });
   it('onesignal result should be populated and err should be null', function(done){
-  var keys = {app_id : "ldksafjsd"}
-  nock('https://onesignal.com:443/api')
-    .get('/v1/apps')
-    .reply(200, {"status": "sent"});
-  var onesignalClient = new Onesignal(keys)
-  onesignalClient.validate(function(error, result){
-    should.exist(result);
-    should.not.exist(error);
-    done()
-  })
+    var keys = {app_id : "ldksafjsd"}
+    nock('https://onesignal.com:443/api')
+      .get('/v1/apps')
+      .reply(200, {"status": "sent"});
+    var onesignalClient = new Onesignal(keys)
+    onesignalClient.validate(function(error, result){
+      should.exist(result);
+      should.not.exist(error);
+      done()
+    })
   });
   it('pushbots result should be populated and err should be null', function(done){
-  var keys = {
-    appId : "sfjvnss",
-    secret : "ldksafjsd"
-  }
-  nock('https://api.pushbots.com')
-    .put('/stats')
-    .reply(200, {"status": "success"});
-  var pushbotsClient = new Pushbots(keys)
-  pushbotsClient.validate(function(error, result){
-    should.exist(result);
-    should.not.exist(error);
-    done()
-  })
+    var keys = {
+      appId : "sfjvnss",
+      secret : "ldksafjsd"
+    }
+    nock('https://api.pushbots.com')
+      .put('/stats')
+      .reply(200, {"status": "success"});
+    var pushbotsClient = new Pushbots(keys)
+    pushbotsClient.validate(function(error, result){
+      should.exist(result);
+      should.not.exist(error);
+      done()
+    })
+  });
 });
 
 
@@ -82,20 +83,20 @@ describe('when email providers are online', function(){
 		})
 	});
   it('onesignal should not return result object when key is incorrect', function(done){
-	var keys = {app_id : "ldksafjsd"}
-	nock('https://onesignal.com:443/api')
-		.get('/v1/apps')
-		.reply(400, {"errors":["Invalid or missing authentication token"]});
-	var onesignalClient = new Onesignal(keys)
-	onesignalClient.validate(function(error, result){
-		should.not.exist(result);
-		should.exist(error);
-		done()
-	})
+  	var keys = {app_id : "ldksafjsd"}
+  	nock('https://onesignal.com:443/api')
+  		.get('/v1/apps')
+  		.reply(400, {"errors":["Invalid or missing authentication token"]});
+  	var onesignalClient = new Onesignal(keys)
+  	onesignalClient.validate(function(error, result){
+  		should.not.exist(result);
+  		should.exist(error);
+  		done()
+  	})
 	});
   it('zeropush result should be populated and err should be null', function(done){
 		var keys = {
-		server_token : "ldksafjsd",
+		  server_token : "ldksafjsd",
 		}
 		nock('https://api.zeropush.com')
 			.get('/verify_credentials')
@@ -158,20 +159,20 @@ describe('when the key validation function is called', function(){
     })
   });
   it('onesignal should return an error if the a parameter is missing', function(done){
-  var keys = {app_id : "ldksafjsd"}
-  nock('https://onesignal.com:443/api')
-    .get('/v1/apps')
-    .reply(400, {"errors":["Invalid or missing authentication token"]});
-  var onesignalClient = new Onesignal(keys)
-  onesignalClient.validate(function(error, result){
-    should.not.exist(result);
-    should.exist(error);
-    done()
-  })
+    var keys = {app_id : "ldksafjsd"}
+    nock('https://onesignal.com:443/api')
+      .get('/v1/apps')
+      .reply(400, {"errors":["Invalid or missing authentication token"]});
+    var onesignalClient = new Onesignal(keys)
+    onesignalClient.validate(function(error, result){
+      should.not.exist(result);
+      should.exist(error);
+      done()
+    })
   });
   it('zeropush result should be populated and err should be null', function(done){
     var keys = {
-    server_token : "",
+      server_token : "",
     }
     nock('https://api.zeropush.com')
       .get('/verify_credentials')

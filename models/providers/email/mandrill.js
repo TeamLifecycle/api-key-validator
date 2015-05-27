@@ -5,11 +5,6 @@ Mandrill = function(keys) {
   this.name = "mandrill";
   this.keys = keys;
   this.validate = function(callback) {
-    this.keyErrors = helper.validatePostmarkCall(this.keys);
-    if(this.keyErrors.length!=0){
-      console.log(this.keyErrors.length, this.keyErrors);
-      return callback(this.keyErrors, null);
-    }
     this.keyErrors = helper.validateMandrillCall(this.keys);
     if(this.keyErrors.length!=0){
       console.log(this.keyErrors);
