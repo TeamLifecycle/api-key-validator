@@ -44,6 +44,7 @@
     "pushbots": "^0.0.1",
     "request": "^2.55.0",
     "sendgrid-extended": "^1.6.5",
-    "twilio": "^2.2.0"
+    "twilio": "^2.2.0",
+    "validate": "^2.1.6"
   }
 }
