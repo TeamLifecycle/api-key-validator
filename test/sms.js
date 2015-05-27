@@ -6,7 +6,7 @@ var Sinch = require("../lib/models/services/sms/sinch");
 var Twilio = require("../lib/models/services/sms/twilio");
 
 
-describe('when email providers are online', function(){
+describe('when sms providers are online', function(){
   it('twilio result should be populated and err should be null', function(done){
     var keys = {
       accountSid : "ldksafjsd",
@@ -71,7 +71,7 @@ describe('when email providers are online', function(){
 
 
 
-describe('when email providers are online', function(){
+describe('when sms providers are online', function(){
   it('twilio should not return result object when key is incorrect', function(done){
 		var keys = {
 			accountSid : "ldksafjsd",
@@ -136,7 +136,7 @@ describe('when email providers are online', function(){
 
 
 
-describe('when email providers are online', function(){
+describe('when the key validation function is called', function(){
   it('twilio should not return result object when key is incorrect', function(done){
 		var keys = {
 			accountSid : "",

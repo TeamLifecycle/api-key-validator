@@ -5,7 +5,7 @@ var Zeropush = require("../lib/models/services/push/zeropush");
 var Onesignal = require("../lib/models/services/push/onesignal");
 var Pushbots = require("../lib/models/services/push/pushbots");
 
-describe('when email providers are online', function(){
+describe('when push providers are online', function(){
   it('parse result should be populated and err should be null', function(done){
 		var keys = {
 			appID : "ldksafjsd",
@@ -66,7 +66,7 @@ describe('when email providers are online', function(){
 
 
 
-describe('when email providers are online', function(){
+describe('when push providers are online', function(){
   it('parse should not return result object when key is incorrect', function(done){
 		var keys = {
 			appID : "ldksafjsd",
