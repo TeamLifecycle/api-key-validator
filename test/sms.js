@@ -9,8 +9,8 @@ var Twilio = require("../lib/models/services/sms/twilio");
 describe('when sms providers are online', function(){
   it('twilio result should be populated and err should be null', function(done){
     var keys = {
-      accountSid : "ldksafjsd",
-      authToken : "ldksafjsd"
+      account_sid : "ldksafjsd",
+      auth_token : "ldksafjsd"
     }
     nock('https://api.twilio.com')
       .get('/2010-04-01/Accounts/ldksafjsd.json')
@@ -39,8 +39,8 @@ describe('when sms providers are online', function(){
   });
     it('plivo result should be populated and err should be null', function(done){
     var keys = {
-      authId : "ldksafjsd",
-      authToken : "ldksafjsd"
+      auth_id : "ldksafjsd",
+      auth_token : "ldksafjsd"
     }
     nock('https://api.plivo.com')
       .get('/v1.Account/')
@@ -74,8 +74,8 @@ describe('when sms providers are online', function(){
 describe('when sms providers are online', function(){
   it('twilio should not return result object when key is incorrect', function(done){
 		var keys = {
-			accountSid : "ldksafjsd",
-			authToken : "ldksafjsd"
+			account_sid : "ldksafjsd",
+			auth_token : "ldksafjsd"
 		}
 		nock('https://api.twilio.com')
 			.get('/2010-04-01/Accounts/ldksafjsd')
@@ -104,8 +104,8 @@ describe('when sms providers are online', function(){
 	});
 	it('plivo should not return result object when key is incorrect', function(done){
 		var keys = {
-			authId : "ldksafjsd",
-			authToken : "ldksafjsd"
+			auth_id : "ldksafjsd",
+			auth_token : "ldksafjsd"
 		}
 		nock('https://api.plivo.com')
 			.get('/v1.Account/')
@@ -139,8 +139,8 @@ describe('when sms providers are online', function(){
 describe('when the key validation function is called', function(){
   it('twilio should not return result object when key is incorrect', function(done){
 		var keys = {
-			accountSid : "",
-			authToken : "ldksafjsd"
+			account_sid : "",
+			auth_token : "ldksafjsd"
 		}
 		nock('https://api.twilio.com')
 			.get('/2010-04-01/Accounts/ldksafjsd')
@@ -154,8 +154,8 @@ describe('when the key validation function is called', function(){
 	});
 	it('twilio should not return result object when key is incorrect', function(done){
 		var keys = {
-			accountSid : "ldksafjsd",
-			authToken : ""
+			account_sid : "ldksafjsd",
+			auth_token : ""
 		}
 		nock('https://api.twilio.com')
 			.get('/2010-04-01/Accounts/ldksafjsd')
@@ -199,8 +199,8 @@ describe('when the key validation function is called', function(){
 	});
 	it('plivo should not return result object when key is incorrect', function(done){
 		var keys = {
-			authId : "",
-			authToken : "ldksafjsd"
+			auth_id : "",
+			auth_token : "ldksafjsd"
 		}
 		nock('https://api.plivo.com')
 			.get('/v1.Account/')
@@ -214,8 +214,8 @@ describe('when the key validation function is called', function(){
 	});
 	it('plivo should not return result object when key is incorrect', function(done){
 		var keys = {
-			authId : "ldksafjsd",
-			authToken : ""
+			auth_id : "ldksafjsd",
+			auth_token : ""
 		}
 		nock('https://api.plivo.com')
 			.get('/v1.Account/')

@@ -8,8 +8,8 @@ var Sendgrid = require("../lib/models/services/email/sendgrid");
 describe('when email providers are online', function(){
 	it('sendgrid result should be populated and err should be null', function(done){
 		var keys = {
-			apiUser : "ldksafjsd",
-			apiKey : "ldksafjsd"
+			api_user : "ldksafjsd",
+			api_key : "ldksafjsd"
 		}
 		var sendgridClient = new Sendgrid(keys)
 		nock('https://api.sendgrid.com:443/api')
@@ -23,7 +23,7 @@ describe('when email providers are online', function(){
 	});
 	it('mailgun result should be populated and err should be null', function(done){
 		var keys = {
-			apiUser : "ldksafjsd",
+			api_user : "ldksafjsd",
 			domain : "ldksaf.jsd"
 		}
 		nock('https://api.mailgun.net')
@@ -38,7 +38,7 @@ describe('when email providers are online', function(){
 	});
 	it('postmark result should be populated and err should be null', function(done){
 		var keys = {
-			serverKey : "ldksafjsd"
+			server_key : "ldksafjsd"
 		}
 		nock('https://api.postmarkapp.com:443')
 			.get('/stats/outbound/opens/emailclients?')
@@ -51,7 +51,7 @@ describe('when email providers are online', function(){
 		})
 	});
 	it('mandrill result should be populated and err should be null', function(done){
-		var keys = {apiKey : "ldksafjsd"}
+		var keys = {api_key : "ldksafjsd"}
 		nock('https://mandrillapp.com/api/1.0')
 			.post('/messages/search-time-series.json')
 			.reply(200, {"status": "sent"});
@@ -67,8 +67,8 @@ describe('when email providers are online', function(){
 describe('when email providers are online', function(){
   it('sendgrid should not return result object when key is incorrect', function(done){
 		var keys = {
-			apiUser : "ldksafjsd",
-			apiKey : "ldksafjsd"
+			api_user : "ldksafjsd",
+			api_key : "ldksafjsd"
 		}
 		var sendgridClient = new Sendgrid(keys)
 		nock('https://api.sendgrid.com:443/api')
@@ -82,7 +82,7 @@ describe('when email providers are online', function(){
 	});
 	it('mailgun should not return result object when key is incorrect', function(done){
 		var keys = {
-			apiUser : "ldksafjsd",
+			api_user : "ldksafjsd",
 			domain : "ldksaf.jsd"
 		}
 		nock('https://api.mailgun.net')
@@ -97,7 +97,7 @@ describe('when email providers are online', function(){
 	});
 	it('postmark should not return result object when key is incorrect', function(done){
 		var keys = {
-			serverKey : "ldksafjsd"
+			server_key : "ldksafjsd"
 		}
 		nock('https://api.postmarkapp.com:443')
 			.get('/stats/outbound/opens/emailclients?')
@@ -110,7 +110,7 @@ describe('when email providers are online', function(){
 		})
 	});
 	it('mandrill should not return result object when key is incorrect', function(done){
-		var keys = {apiKey : "ldksafjsd"}
+		var keys = {api_key : "ldksafjsd"}
 		nock('https://mandrillapp.com/api/1.0')
 			.post('/messages/search-time-series.json')
 			.reply(500, {"status":"error","code":-1,"name":"Invalid_Key","message":"Invalid API key"});
@@ -128,8 +128,8 @@ describe('when email providers are online', function(){
 describe('when the key validation function is called', function(){
   it('sendgrid should return an error if the a parameter is missing', function(done){
 		var keys = {
-			apiUser : "skhvkab",
-			apiKey : ""
+			api_user : "skhvkab",
+			api_key : ""
 		}
 		var sendgridClient = new Sendgrid(keys)
 		nock('https://api.sendgrid.com:443/api')
@@ -143,8 +143,8 @@ describe('when the key validation function is called', function(){
 	});
 	it('sendgrid should return an error if the a parameter is missing', function(done){
 		var keys = {
-			apiUser : "",
-			apiKey : "sfknvkj"
+			api_user : "",
+			api_key : "sfknvkj"
 		}
 		var sendgridClient = new Sendgrid(keys)
 		nock('https://api.sendgrid.com:443/api')
@@ -158,7 +158,7 @@ describe('when the key validation function is called', function(){
 	});
 	it('mailgun should return an error if the a parameter is missing', function(done){
 		var keys = {
-			apiUser : "",
+			api_user : "",
 			domain : "ldksa.fjsd"
 		}
 		nock('https://api.mailgun.net:443/v2')
@@ -173,7 +173,7 @@ describe('when the key validation function is called', function(){
 	});
 	it('mailgun should return an error if the a parameter is missing', function(done){
 		var keys = {
-			apiUser : "ldksafjsd",
+			api_user : "ldksafjsd",
 			domain : ""
 		}
 		nock('https://api.mailgun.net:443/v2')
@@ -188,7 +188,7 @@ describe('when the key validation function is called', function(){
 	});
 	it('mailgun should return an error if the domain is malformed', function(done){
 		var keys = {
-			apiUser : "sfvjflsv",
+			api_user : "sfvjflsv",
 			domain : "ldksafjsd"
 		}
 		nock('https://api.mailgun.net:443/v2')
@@ -203,7 +203,7 @@ describe('when the key validation function is called', function(){
 	});
 	it('postmark should return an error if the a parameter is missing', function(done){
 		var keys = {
-			serverKey : ""
+			server_key : ""
 		}
 		nock('https://api.postmarkapp.com:443')
 			.get('/stats/outbound/opens/emailclients?')
@@ -216,7 +216,7 @@ describe('when the key validation function is called', function(){
 		})
 	});
 	it('postmark should return an error if the a parameter is missing', function(done){
-		var keys = {apiKey : ""}
+		var keys = {api_key : ""}
 		nock('https://mandrillapp.com/api/1.0')
 			.post('/messages/search-time-series.json')
 			.reply(500, {"status":"error","code":-1,"name":"Invalid_Key","message":"Invalid API key"});
@@ -228,7 +228,7 @@ describe('when the key validation function is called', function(){
 		})
 	});
   it('mandrill should not return result object when key is incorrect', function(done){
-    var keys = {apiKey : "ldksafjsd"}
+    var keys = {api_key : "ldksafjsd"}
     nock('https://mandrillapp.com/api/1.0')
       .post('/messages/search-time-series.json')
       .reply(500, {"status":"error","code":-1,"name":"Invalid_Key","message":"Invalid API key"});

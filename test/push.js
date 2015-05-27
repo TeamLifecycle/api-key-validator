@@ -8,8 +8,8 @@ var Pushbots = require("../lib/models/services/push/pushbots");
 describe('when push providers are online', function(){
   it('parse result should be populated and err should be null', function(done){
 		var keys = {
-			appID : "ldksafjsd",
-			apiKey : "djbwhsdk"
+			app_id : "ldksafjsd",
+			api_key : "djbwhsdk"
 		}
 		nock('https://api.parse.com:443')
 			.get('/1/roles/')
@@ -49,7 +49,7 @@ describe('when push providers are online', function(){
   });
   it('pushbots result should be populated and err should be null', function(done){
     var keys = {
-      appId : "sfjvnss",
+      app_id : "sfjvnss",
       secret : "ldksafjsd"
     }
     nock('https://api.pushbots.com')
@@ -69,8 +69,8 @@ describe('when push providers are online', function(){
 describe('when push providers are online', function(){
   it('parse should not return result object when key is incorrect', function(done){
 		var keys = {
-			appID : "ldksafjsd",
-			apiKey : "djbwhsdk"
+			app_id : "ldksafjsd",
+			api_key : "djbwhsdk"
 		}
 		nock('https://api.parse.com:443')
 			.get('/1/roles/')
@@ -110,7 +110,7 @@ describe('when push providers are online', function(){
 	});
   it('pushbots result should be populated and err should be null', function(done){
 		var keys = {
-			appId : "sfjvnss",
+			app_id : "sfjvnss",
 			secret : "ldksafjsd"
 		}
 		nock('https://api.pushbots.com')
@@ -130,8 +130,8 @@ describe('when push providers are online', function(){
 describe('when the key validation function is called', function(){
   it('parse should return an error if the a parameter is missing', function(done){
     var keys = {
-      appID : "",
-      apiKey : "djbwhsdk"
+      app_id : "",
+      api_key : "djbwhsdk"
     }
     nock('https://api.parse.com:443')
       .get('/1/roles/')
@@ -146,7 +146,7 @@ describe('when the key validation function is called', function(){
   it('parse should return an error if the a parameter is missing', function(done){
     var keys = {
       appID : "ldksafjsd",
-      apiKey : ""
+      api_key : ""
     }
     nock('https://api.parse.com:443')
       .get('/1/roles/')
@@ -186,7 +186,7 @@ describe('when the key validation function is called', function(){
   });
   it('pushbots result should be populated and err should be null', function(done){
     var keys = {
-      appId : "",
+      app_id : "",
       secret : "ldksafjsd"
     }
     nock('https://api.pushbots.com')
@@ -201,7 +201,7 @@ describe('when the key validation function is called', function(){
   });
   it('pushbots result should be populated and err should be null', function(done){
     var keys = {
-      appId : "sfjvnss",
+      app_id : "sfjvnss",
       secret : ""
     }
     nock('https://api.pushbots.com')
