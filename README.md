@@ -1,19 +1,19 @@
-# API Key Validation
+# API Key Validator
 
-[ ![Codeship Status for VennHQ/api-key-validation](https://codeship.com/projects/84e0b4a0-e605-0132-9e91-46daeabcd7f9/status?branch=master)](https://codeship.com/projects/82171)
+[ ![Codeship Status for VennHQ/api-key-validator](https://codeship.com/projects/84e0b4a0-e605-0132-9e91-46daeabcd7f9/status?branch=master)](https://codeship.com/projects/82171)
 
 Validate api keys for major email, sms, or push notification providers quickly and easily. Catch the problem early.
 
 
 ## Installation
 ``` bash
-npm install api-key-validation
+npm install api-key-validator
 ```
 
 ## Validate (serviceName, keys, callback)
 
 |serviceName | keys |
-_________________________________
+-----------------------------------
 | "mailgun" | {api_user, domain}  |
 | "mandrill" | {api_key}          |
 | "postmark" | {server_key}       |
