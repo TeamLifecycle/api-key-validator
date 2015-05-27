@@ -1,24 +1,13 @@
-var ServiceProvider, Twilio;
+/////////An example of validating keys for twilio///////////
 
-Twilio = function(accountSid, authToken) {
-  this.name = "twilio";
-  this.keys = {
-    accountSid: accountSid,
-    authToken: authToken
-  };
-  this.checkKeys = function(callback) {
-    return this.client().accounts(this.keys.accountSid).get(function(err, account) {
-      return callback(err, account);
-    });
-  };
-  this.client = function() {
-    return require('twilio')(this.keys.accountSid, this.keys.authToken);
-  };
-  return this;
-};
+var apiKeyValidator = require('lib/index');
 
-ServiceProvider = require("../service_provider");
-
-Twilio.prototype = new ServiceProvider;
+var keys = {
+    api_key: "123123", //enter your own api_key
+    auth_token: "2342394" //enter your own auth_token
+}
+apiKeyValidator.validate("twilio", keys, function(err, result){
+    console.log(err, result);
+})
 
 module.exports = Twilio;

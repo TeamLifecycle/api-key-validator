@@ -1,9 +1,9 @@
 var nock = require("nock");
 var should = require("chai").should();
-var Mailgun = require("../models/providers/email/mailgun");
-var Mandrill = require("../models/providers/email/mandrill");
-var Postmark = require("../models/providers/email/postmark");
-var Sendgrid = require("../models/providers/email/sendgrid");
+var Mailgun = require("../lib/models/services/email/mailgun");
+var Mandrill = require("../lib/models/services/email/mandrill");
+var Postmark = require("../lib/models/services/email/postmark");
+var Sendgrid = require("../lib/models/services/email/sendgrid");
 
 describe('when email providers are online', function(){
 	it('sendgrid result should be populated and err should be null', function(done){

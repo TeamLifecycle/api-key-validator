@@ -1,13 +1,13 @@
 var nock = require("nock");
 var should = require("chai").should();
-var Nexmo = require("../models/providers/sms/nexmo");
-var Plivo = require("../models/providers/sms/plivo");
-var Sinch = require("../models/providers/sms/sinch");
-var Twilio = require("../models/providers/sms/twilio");
+var Nexmo = require("../lib/models/services/sms/nexmo");
+var Plivo = require("../lib/models/services/sms/plivo");
+var Sinch = require("../lib/models/services/sms/sinch");
+var Twilio = require("../lib/models/services/sms/twilio");
 
 
 describe('when email providers are online', function(){
-  it('twilios result should be populated and err should be null', function(done){
+  it('twilio result should be populated and err should be null', function(done){
     var keys = {
       accountSid : "ldksafjsd",
       authToken : "ldksafjsd"
