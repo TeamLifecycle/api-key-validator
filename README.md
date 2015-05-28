@@ -22,7 +22,7 @@ npm install api-key-validator
 | "plivo" | {auth_id, auth_token}                 |
 | "sinch" | {application_key, application_secret} |
 | "twilio" | {account_sid, auth_token}             |
-| "onesignal" | {app_id}         |
+| "onesignal" | {app_id, api_key}         |
 | "parse" | {app_id, api_key}    |
 | "pushbots" | {app_id, secret}  |
 | "zeropush" | {server_token}     |
