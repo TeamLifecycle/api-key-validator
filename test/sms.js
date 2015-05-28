@@ -42,8 +42,8 @@ describe('when sms providers are online', function(){
       auth_id : "ldksafjsd",
       auth_token : "ldksafjsd"
     }
-    nock('https://api.plivo.com')
-      .get('/v1.Account/')
+    nock('https://api.plivo.com/v1')
+      .get('/Account/ldksafjsd')
       .reply(200, {"status": "sent"});
     var plivoClient = new Plivo(keys)
     plivoClient.validate(function(error, result){
@@ -107,8 +107,8 @@ describe('when sms providers are online', function(){
 			auth_id : "ldksafjsd",
 			auth_token : "ldksafjsd"
 		}
-		nock('https://api.plivo.com')
-			.get('/v1.Account/')
+		nock('https://api.plivo.com/v1')
+			.get('/Account/ldksafjsd')
 			.reply(500, {"error-code":"401","error-code-label":"authentication failed"});
 		var plivoClient = new Plivo(keys)
 		plivoClient.validate(function(error, result){
@@ -137,7 +137,7 @@ describe('when sms providers are online', function(){
 
 
 describe('when the key validation function is called', function(){
-  it('twilio should not return result object when key is incorrect', function(done){
+  it('should return an error if the a parameter is missing', function(done){
 		var keys = {
 			account_sid : "",
 			auth_token : "ldksafjsd"
@@ -152,7 +152,7 @@ describe('when the key validation function is called', function(){
 			done()
 		})
 	});
-	it('twilio should not return result object when key is incorrect', function(done){
+	it('twilio should return an error if the a parameter is missing', function(done){
 		var keys = {
 			account_sid : "ldksafjsd",
 			auth_token : ""
@@ -197,7 +197,7 @@ describe('when the key validation function is called', function(){
 			done()
 		})
 	});
-	it('plivo should not return result object when key is incorrect', function(done){
+	it('plivo should return an error if the a parameter is missing', function(done){
 		var keys = {
 			auth_id : "",
 			auth_token : "ldksafjsd"
@@ -212,7 +212,7 @@ describe('when the key validation function is called', function(){
 			done()
 		})
 	});
-	it('plivo should not return result object when key is incorrect', function(done){
+	it('plivo should return an error if the a parameter is missing', function(done){
 		var keys = {
 			auth_id : "ldksafjsd",
 			auth_token : ""

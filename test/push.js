@@ -36,9 +36,9 @@ describe('when push providers are online', function(){
     })
   });
   it('onesignal result should be populated and err should be null', function(done){
-    var keys = {app_id : "ldksafjsd"}
-    nock('https://onesignal.com:443/api')
-      .get('/v1/apps')
+    var keys = {app_id : "ldksafjsd", api_key : "svfsvfsvs"}
+    nock('https://onesignal.com/api/v1')
+      .get('/players?app_id=ldksafjsd')
       .reply(200, {"status": "sent"});
     var onesignalClient = new Onesignal(keys)
     onesignalClient.validate(function(error, result){
@@ -49,8 +49,7 @@ describe('when push providers are online', function(){
   });
   it('pushbots result should be populated and err should be null', function(done){
     var keys = {
-      app_id : "sfjvnss",
-      secret : "ldksafjsd"
+      app_id : "sfjvnss"
     }
     nock('https://api.pushbots.com')
       .put('/stats')
@@ -83,9 +82,9 @@ describe('when push providers are online', function(){
 		})
 	});
   it('onesignal should not return result object when key is incorrect', function(done){
-  	var keys = {app_id : "ldksafjsd"}
-  	nock('https://onesignal.com:443/api')
-  		.get('/v1/apps')
+    var keys = {app_id : "ldksafjsd", api_key : "svfsvfsvs"}
+  	nock('https://onesignal.com/api/v1')
+  		.get('/players?app_id=ldksafjsd')
   		.reply(400, {"errors":["Invalid or missing authentication token"]});
   	var onesignalClient = new Onesignal(keys)
   	onesignalClient.validate(function(error, result){
@@ -110,8 +109,7 @@ describe('when push providers are online', function(){
 	});
   it('pushbots result should be populated and err should be null', function(done){
 		var keys = {
-			app_id : "sfjvnss",
-			secret : "ldksafjsd"
+			app_id : "sfjvnss"
 		}
 		nock('https://api.pushbots.com')
 			.put('/stats')
@@ -159,9 +157,21 @@ describe('when the key validation function is called', function(){
     })
   });
   it('onesignal should return an error if the a parameter is missing', function(done){
-    var keys = {app_id : "ldksafjsd"}
-    nock('https://onesignal.com:443/api')
-      .get('/v1/apps')
+    var keys = {app_id : "", api_key : "svfsvfsvs"}
+    nock('https://onesignal.com/api/v1')
+      .get('/players?app_id=')
+      .reply(400, {"errors":["Invalid or missing authentication token"]});
+    var onesignalClient = new Onesignal(keys)
+    onesignalClient.validate(function(error, result){
+      should.not.exist(result);
+      should.exist(error);
+      done()
+    })
+  });
+  it('onesignal should return an error if the a parameter is missing', function(done){
+    var keys = {app_id : "sfhkbvhefi", api_key : ""}
+    nock('https://onesignal.com/api/v1')
+      .get('/players?app_id=ldksafjsd')
       .reply(400, {"errors":["Invalid or missing authentication token"]});
     var onesignalClient = new Onesignal(keys)
     onesignalClient.validate(function(error, result){
@@ -186,8 +196,7 @@ describe('when the key validation function is called', function(){
   });
   it('pushbots result should be populated and err should be null', function(done){
     var keys = {
-      app_id : "",
-      secret : "ldksafjsd"
+      app_id : ""
     }
     nock('https://api.pushbots.com')
       .put('/stats')
@@ -201,8 +210,7 @@ describe('when the key validation function is called', function(){
   });
   it('pushbots result should be populated and err should be null', function(done){
     var keys = {
-      app_id : "sfjvnss",
-      secret : ""
+      app_id : "sfjvnss"
     }
     nock('https://api.pushbots.com')
       .put('/stats')

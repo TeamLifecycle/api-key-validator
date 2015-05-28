@@ -3,10 +3,10 @@
 var apiKeyValidator = require('./lib/index');
 
 var keys = {
-  app_id : "1c17c176-fe50-11e4-b596-5f4543d85ec3",
-  api_key : "MWMxN2MxZjgtZmU1MC0xMWU0LWI1OTctZjM2MzdkYzA5MGQ4"
+  auth_id : "MAM2EYYWY0NDK0MWNLN2",
+  auth_token : "YzVmZGIxMGNkODUwMjZjZThhZGE3MjQ1MWM1NmEw"
 }
-apiKeyValidator.validate("onesignal", keys, function(err, result){
+apiKeyValidator.validate("plivo", keys, function(err, result){
   if(err)console.log("invalid!");
   if(result)console.log("valid!");
 })
