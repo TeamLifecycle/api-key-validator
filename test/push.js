@@ -26,7 +26,7 @@ describe('when push providers are online', function(){
       server_token : "ldksafjsd",
     }
     nock('https://api.zeropush.com')
-      .get('/verify_credentials')
+      .get('/verify_credentials?auth_token=ldksafjsd')
       .reply(200, {"status": "sent"});
     var zeropushClient = new Zeropush(keys)
     zeropushClient.validate(function(error, result){
@@ -98,7 +98,7 @@ describe('when push providers are online', function(){
 		  server_token : "ldksafjsd",
 		}
 		nock('https://api.zeropush.com')
-			.get('/verify_credentials')
+			.get('/verify_credentials?auth_token=ldksafjsd')
 			.reply(401, {"error":"authorization error","message":"Please provide a valid authentication token parameter or HTTP Authorization header.","reference_url":"https://zeropush.com/documentation/api_reference"});
 		var zeropushClient = new Zeropush(keys)
 		zeropushClient.validate(function(error, result){
