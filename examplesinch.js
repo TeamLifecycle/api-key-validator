@@ -3,10 +3,10 @@
 var apiKeyValidator = require('./lib/index');
 
 var keys = {
-  auth_id : "MAM2EYYWY0NDK0MWNLN2",
-  auth_token : "YzVmZGIxMGNkODUwMjZjZThhZGE3MjQ1MWM1NmEw"
+  application_key : "0cd65f82-d825-4279-aeb0-97dcf57541ba",
+  application_secret : "tMNQnM6SG0iwcLOCWXWeSw=="
 }
-apiKeyValidator.validate("plivo", keys, function(err, result){
+apiKeyValidator.validate("sinch", keys, function(err, result){
   if(err)console.log("invalid!");
   if(result)console.log("valid!");
 })

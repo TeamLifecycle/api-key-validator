@@ -3,9 +3,9 @@
 var apiKeyValidator = require('./lib/index');
 
 var keys = {
-  app_id : "555b9dd71sfsgs779595a378b456a",
+  server_token : "iosdev_sfg48yDWUtJSQPLmALzBSWF",
 }
-apiKeyValidator.validate("pushbots", keys, function(err, result){
+apiKeyValidator.validate("zeropush", keys, function(err, result){
   if(err)console.log("invalid!");
   if(result)console.log("valid!");
 })
