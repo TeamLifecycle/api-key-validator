@@ -1,6 +1,6 @@
 {
   "name": "api-key-validator",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A package to easily validate api keys for mailgun, mandrill, postmark, sendgrid, onesignal, parse, pushbots, zeropush, nexmo, plivo, sinch, and twilio",
   "main": "index.js",
   "directories": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/VennHQ/api-key-validation.git"
+    "url": "git+https://github.com/VennHQ/api-key-validator.git"
   },
   "keywords": [
     "api",
@@ -23,9 +23,9 @@
   "author": "Jake Mooney & Tim Giblin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/VennHQ/api-key-validation/issues"
+    "url": "https://github.com/VennHQ/api-key-validator/issues"
   },
-  "homepage": "https://github.com/VennHQ/api-key-validation#readme",
+  "homepage": "https://github.com/VennHQ/api-key-validator#readme",
   "devDependencies": {
     "chai": "^2.3.0",
     "mocha": "^2.2.5",
