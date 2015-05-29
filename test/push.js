@@ -12,8 +12,8 @@ describe('push providers', function(){
   			app_id : "ldksafjsd",
   			api_key : "djbwhsdk"
   		}
-  		nock('https://api.parse.com:443')
-  			.get('/1/roles/')
+  		nock('https://api.parse.com')
+  			.get('/1/config')
   			.reply(200, [ "parse"]);
   		var parseClient = new Parse(keys)
   		parseClient.validate(function(error, result){
@@ -70,8 +70,8 @@ describe('push providers', function(){
   			app_id : "ldksafjsd",
   			api_key : "djbwhsdk"
   		}
-  		nock('https://api.parse.com:443')
-  			.get('/1/roles/')
+  		nock('https://api.parse.com')
+  			.get('/1/config')
   			.reply(401, {"error": "bad key"});
   		var parseClient = new Parse(keys)
   		parseClient.validate(function(error, result){

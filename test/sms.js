@@ -58,8 +58,8 @@ describe('sms providers', function(){
 			application_key : "ldksafjsd",
 			application_secret : "ldksafjsd"
 			}
-			nock('https://messagingapi.sinch.com')
-			  .post('/v1/sms/+')
+			nock('https://messagingApi.Sinch.com/v1')
+			  .get('/message/status/1234')
 			  .reply(200, {"status": "sent"});
 			var sinchClient = new Sinch(keys)
 			sinchClient.validate(function(error, result){
@@ -124,8 +124,8 @@ describe('sms providers', function(){
 		    application_key : "ldksafjsd",
 		    application_secret : "ldksafjsd"
 		    }
-		    nock('https://messagingapi.sinch.com')
-		      .post('/v1/sms/+')
+		    nock('https://messagingApi.Sinch.com/v1')
+		      .get('/message/status/1234')
 		      .reply(401, {"errorCode":40100,"message":"Authorization required"});
 		    var sinchClient = new Sinch(keys)
 		    sinchClient.validate(function(error, result){
