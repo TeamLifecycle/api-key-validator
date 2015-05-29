@@ -37,7 +37,6 @@
     "mailgun-js": "^0.6.9",
     "mandrill-api": "^1.0.45",
     "nock": "^1.9.0",
-    "node-parse-api": "^0.3.5",
     "nzero-push": "^2.1.2",
     "plivo-node": "^0.2.5",
     "postmark": "^1.0.0",
