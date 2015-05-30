@@ -1,8 +1,7 @@
-# API Key Validator
+# API Key Validator ![alt tag](https://cloud.githubusercontent.com/assets/9973419/7895330/484c372e-0655-11e5-946d-0a3204aec6ff.gif)
 
 [ ![Codeship Status for VennHQ/api-key-validator](https://codeship.com/projects/84e0b4a0-e605-0132-9e91-46daeabcd7f9/status?branch=master)](https://codeship.com/projects/82171)
 
-![alt tag](https://cloud.githubusercontent.com/assets/9973419/7895330/484c372e-0655-11e5-946d-0a3204aec6ff.gif)
 
 Validate api keys for major email, sms, or push notification providers quickly and easily. Catch the problem early.
 
