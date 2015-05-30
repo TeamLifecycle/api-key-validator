@@ -3,7 +3,7 @@
 var apiKeyValidator = require('./lib/index');
 
 var keys = {
-  server_token : "iosdev_sfg48yDWUtJSQPLmALzBSWF",
+  server_token : "iosdev_gvj8yDWUJHGVGQLmALzJHCF",
 }
 apiKeyValidator.validate("zeropush", keys, function(err, result){
   if(err)console.log("invalid!");
