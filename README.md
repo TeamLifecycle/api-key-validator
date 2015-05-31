@@ -45,6 +45,7 @@ apiKeyValidator.validate("sendgrid", keys, function(err, result){
 ```
 
 ## Development
+Want to add a service not currently supported? Feel free to add it yourself and send a pull request!
 
 #### Install Dependencies
 ``` bash
