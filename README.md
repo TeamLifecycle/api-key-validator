@@ -46,22 +46,22 @@ apiKeyValidator.validate("sendgrid", keys, function(err, result){
 
 ## Development
 
-### Install Dependencies
+#### Install Dependencies
 ``` bash
 npm install
 ```
 
-### Run Examples
+#### Run Examples
 ``` bash
 node example.js
 ```
 
-### Run Tests
+#### Run Tests
 ``` bash
 mocha
 ```
 
-### Adding a New Service Provider
+#### Adding a New Service Provider
 1. Write Failing Tests
   1. If new service type, create a new test file of the form
 		 `test/service_type.js`.
