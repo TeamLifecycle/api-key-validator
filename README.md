@@ -1,4 +1,4 @@
-# API Key Validator ![alt tag](https://cloud.githubusercontent.com/assets/9973419/7895501/067b4474-0660-11e5-9c3a-d0ef4c141ee2.gif)
+# API Key Validator &nbsp;&nbsp;![image of lock](https://cloud.githubusercontent.com/assets/9973419/7895501/067b4474-0660-11e5-9c3a-d0ef4c141ee2.gif)
 
 [ ![Codeship Status for VennHQ/api-key-validator](https://codeship.com/projects/84e0b4a0-e605-0132-9e91-46daeabcd7f9/status?branch=master)](https://codeship.com/projects/82171)
 
