@@ -1,0 +1,107 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@2.11.1
+3 info using node@v0.12.0
+4 verbose node symlink /usr/local/bin/node
+5 verbose publish [ '.' ]
+6 silly cache add args [ '.', null ]
+7 verbose cache add spec .
+8 silly cache add parsed spec { raw: '.',
+8 silly cache add   scope: null,
+8 silly cache add   name: null,
+8 silly cache add   rawSpec: '.',
+8 silly cache add   spec: '/Users/timgiblin/Dropbox/Code/api-key-validator',
+8 silly cache add   type: 'directory' }
+9 verbose addLocalDirectory /Users/timgiblin/.npm/api-key-validator/0.1.1/package.tgz not in flight; packing
+10 verbose tar pack [ '/Users/timgiblin/.npm/api-key-validator/0.1.1/package.tgz',
+10 verbose tar pack   '/Users/timgiblin/Dropbox/Code/api-key-validator' ]
+11 verbose tarball /Users/timgiblin/.npm/api-key-validator/0.1.1/package.tgz
+12 verbose folder /Users/timgiblin/Dropbox/Code/api-key-validator
+13 info prepublish api-key-validator@0.1.1
+14 verbose addLocalTarball adding from inside cache /Users/timgiblin/.npm/api-key-validator/0.1.1/package.tgz
+15 silly cache afterAdd api-key-validator@0.1.1
+16 verbose afterAdd /Users/timgiblin/.npm/api-key-validator/0.1.1/package/package.json not in flight; writing
+17 verbose afterAdd /Users/timgiblin/.npm/api-key-validator/0.1.1/package/package.json written
+18 silly publish { name: 'api-key-validator',
+18 silly publish   version: '0.1.1',
+18 silly publish   description: 'A package to easily validate api keys for mailgun, mandrill, postmark, sendgrid, onesignal, parse, pushbots, zeropush, nexmo, plivo, sinch, and twilio',
+18 silly publish   main: 'lib/index.js',
+18 silly publish   directories: { test: 'test' },
+18 silly publish   scripts: { test: 'mocha' },
+18 silly publish   repository:
+18 silly publish    { type: 'git',
+18 silly publish      url: 'git+https://github.com/VennHQ/api-key-validator.git' },
+18 silly publish   keywords: [ 'api', 'validation', 'verification', 'verify', 'key' ],
+18 silly publish   author: { name: 'Jake Mooney & Tim Giblin' },
+18 silly publish   license: 'MIT',
+18 silly publish   bugs: { url: 'https://github.com/VennHQ/api-key-validator/issues' },
+18 silly publish   homepage: 'https://github.com/VennHQ/api-key-validator#readme',
+18 silly publish   devDependencies: { chai: '^2.3.0', mocha: '^2.2.5', nock: '^1.9.0' },
+18 silly publish   dependencies:
+18 silly publish    { chai: '^2.3.0',
+18 silly publish      easynexmo: '^0.6.2',
+18 silly publish      'mandrill-api': '^1.0.45',
+18 silly publish      nock: '^1.9.0',
+18 silly publish      'nzero-push': '^2.1.2',
+18 silly publish      'plivo-node': '^0.2.5',
+18 silly publish      postmark: '^1.0.0',
+18 silly publish      pushbots: '^0.0.1',
+18 silly publish      request: '^2.55.0',
+18 silly publish      'sendgrid-extended': '^1.6.5',
+18 silly publish      twilio: '^2.2.0',
+18 silly publish      validate: '^2.1.6' },
+18 silly publish   readme: '# API Key Validator &nbsp;&nbsp;![image of lock](https://cloud.githubusercontent.com/assets/9973419/7895501/067b4474-0660-11e5-9c3a-d0ef4c141ee2.gif)\n\n[ ![Codeship Status for VennHQ/api-key-validator](https://codeship.com/projects/84e0b4a0-e605-0132-9e91-46daeabcd7f9/status?branch=master)](https://codeship.com/projects/82171)\n\n\nValidate api keys for major email, sms, or push notification providers quickly and easily. Catch the problem early.\n\n\n## Installation\n``` bash\nnpm install api-key-validator\n```\n\n## Validate (serviceName, keys, callback)\n\n|serviceName | keys |\n|------------|---------------------------------------|\n| "mailgun"  | {api_user, domain}                    |\n| "mandrill" | {api_key}                             |\n| "postmark" | {server_key}                          |\n| "sendgrid" | {api_user, api_key}                   |\n| "nexmo"    | {api_key, api_secret}                 |\n| "plivo"    | {auth_id, auth_token}                 |\n| "sinch"    | {application_key, application_secret} |\n| "twilio"   | {account_sid, auth_token}             |\n| "onesignal"| {app_id, api_key}                     |\n| "parse"    | {app_id, api_key}                     |\n| "pushbots" | {app_id}                              |\n| "zeropush" | {server_token}                        |\n\n\n#### Example\n``` javascript\nvar apiKeyValidator = require(\'api-key-validator\');\n\nvar keys = {\n    api_user: "cx34554cvd234sdfsd34fsdf123123",\n    api_key: "2342334534fbdf29sdfsbfbdfsd4"\n}\n\napiKeyValidator.validate("sendgrid", keys, function(err, result){\n    console.log(err, result);\n});\n\n```\n\n## Development\nWant to add a service not currently supported? Feel free to add it yourself and send a pull request!\n\n#### Install Dependencies\n``` bash\nnpm install\n```\n\n#### Run Examples\n``` bash\nnode example.js\n```\n\n#### Run Tests\n``` bash\nmocha\n```\n\n#### Adding a New Service Provider\n1. Write Failing Tests\n  1. If new service type, create a new test file of the form\n\t\t `test/service_type.js`.\n  2. Copy `test/test_template.js` into the newly created file or\n\t   the file corresponding to the service type of the new provider.\n  3. Follow instructions in the template file to create tests for the new\n\t   service\n2. Create the New Service Provider\n  1. Install the service provider\'s npm package as a dependency, or hit their rest API through npm request package\n  2. Create a new file of the form `lib/models/services/service_type\n\t   /provider_name.js`\n  3. Decide how you want to test if the provided keys are valid.\n\t\t Refer to the service\'s api documentation to call a function\n\t\t or hit an end point that will authenticate or result in an error.\n  4. Return a callback making sure that error is null and result is\n\t\t populated if the keys are verified and error is populated and result is\n\t\t null if they are not.\n3. Edit `lib/index.js`\n  1. Require the newly created service provider\n  ```js\n  var ServiceName = require(\'./providers/service_type/service_name\');\n  ```\n  2. Add the newly created service provider to `apiKeyValidator`\n  ``` javascript\n\tif (service == "service_name") Service_name.validate(keys);\n  ```\n',
+18 silly publish   readmeFilename: 'README.md',
+18 silly publish   gitHead: 'f8e9d3a3f48b69cace32c5730034a4a4662d9d84',
+18 silly publish   _id: 'api-key-validator@0.1.1',
+18 silly publish   _shasum: '09c739db13a57ad9e6237b65a90e4c45b353de20',
+18 silly publish   _from: '.' }
+19 verbose getPublishConfig undefined
+20 silly mapToRegistry name api-key-validator
+21 silly mapToRegistry using default registry
+22 silly mapToRegistry registry https://registry.npmjs.org/
+23 silly mapToRegistry uri https://registry.npmjs.org/api-key-validator
+24 verbose publish registryBase https://registry.npmjs.org/
+25 silly publish uploading /Users/timgiblin/.npm/api-key-validator/0.1.1/package.tgz
+26 verbose request uri https://registry.npmjs.org/api-key-validator
+27 verbose request sending authorization for write operation
+28 info attempt registry request try #1 at 1:30:21 PM
+29 verbose request id 77f30c774dac5dba
+30 http request PUT https://registry.npmjs.org/api-key-validator
+31 http 403 https://registry.npmjs.org/api-key-validator
+32 verbose headers { 'content-type': 'application/json',
+32 verbose headers   'cache-control': 'max-age=60',
+32 verbose headers   'content-length': '95',
+32 verbose headers   'accept-ranges': 'bytes',
+32 verbose headers   date: 'Wed, 01 Jul 2015 17:30:21 GMT',
+32 verbose headers   via: '1.1 varnish',
+32 verbose headers   connection: 'keep-alive',
+32 verbose headers   'x-served-by': 'cache-jfk1029-JFK',
+32 verbose headers   'x-cache': 'MISS',
+32 verbose headers   'x-cache-hits': '0',
+32 verbose headers   'x-timer': 'S1435771821.664505,VS0,VE305' }
+33 verbose request invalidating /Users/timgiblin/.npm/registry.npmjs.org/api-key-validator on PUT
+34 error publish Failed PUT 403
+35 verbose stack Error: "You cannot publish over the previously published version 0.1.1." : api-key-validator
+35 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:247:14)
+35 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:170:14)
+35 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:354:22)
+35 verbose stack     at Request.emit (events.js:110:17)
+35 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1207:14)
+35 verbose stack     at Request.emit (events.js:129:20)
+35 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1153:12)
+35 verbose stack     at IncomingMessage.emit (events.js:129:20)
+35 verbose stack     at _stream_readable.js:908:16
+35 verbose stack     at process._tickCallback (node.js:355:11)
+36 verbose statusCode 403
+37 verbose pkgid api-key-validator
+38 verbose cwd /Users/timgiblin/Dropbox/Code/api-key-validator
+39 error Darwin 14.3.0
+40 error argv "node" "/usr/local/bin/npm" "publish"
+41 error node v0.12.0
+42 error npm  v2.11.1
+43 error code E403
+44 error "You cannot publish over the previously published version 0.1.1." : api-key-validator
+45 error If you need help, you may report this error at:
+45 error     <https://github.com/npm/npm/issues>
+46 verbose exit [ 1, true ]

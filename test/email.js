@@ -27,8 +27,12 @@ describe('email providers', function(){
 				api_user : "ldksafjsd",
 				domain : "ldksaf.jsd"
 			}
+			nock('https://api+'+keys.api_user+'@api.mailgun.net')
+				.get('/v3/ldksaf.jsd/stats')
+				.reply(200, {"message": "success"});
+			// not sure why its hitting this too
 			nock('https://api.mailgun.net')
-				.get('/v2/ldksaf.jsd/stats?event=sent')
+				.get('/v3/ldksaf.jsd/stats')
 				.reply(200, {"message": "success"});
 			var mailgunClient = new Mailgun(keys)
 			mailgunClient.validate(function(error, result){
@@ -84,12 +88,13 @@ describe('when email providers are online', function(){
 			})
 		});
 		it('mailgun err should be populated', function(done){
+			nock.cleanAll()
 			var keys = {
 				api_user : "ldksafjsd",
 				domain : "ldksaf.jsd"
 			}
 			nock('https://api.mailgun.net')
-				.get('/v2/ldksaf.jsd/stats?event=sent')
+				.get('/v3/ldksaf.jsd/stats')
 				.reply(401,{});
 			var mailgunClient = new Mailgun(keys)
 			mailgunClient.validate(function(error, result){
