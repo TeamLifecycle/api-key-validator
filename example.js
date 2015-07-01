@@ -3,9 +3,10 @@
 var apiKeyValidator = require('./lib/index');
 
 var keys = {
-  server_token : "iosdev_sfg48yDWUtJSQPLmALzBSWF",
+  api_user: "key-dsfsdfsd",
+  domain: "example.io"
 }
-apiKeyValidator.validate("zeropush", keys, function(err, result){
+apiKeyValidator.validate("mailgun", keys, function(err, result){
   if(err)console.log("invalid!");
   if(result)console.log("valid!");
 })
