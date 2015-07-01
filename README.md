@@ -15,7 +15,7 @@ npm install api-key-validator
 
 |serviceName | keys |
 |------------|---------------------------------------|
-| "mailgun"  | {api_user, domain}                    |
+| "mailgun"  | {api_key, domain}                    |
 | "mandrill" | {api_key}                             |
 | "postmark" | {server_key}                          |
 | "sendgrid" | {api_user, api_key}                   |

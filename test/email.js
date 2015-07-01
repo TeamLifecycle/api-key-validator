@@ -24,10 +24,10 @@ describe('email providers', function(){
 		});
 		it('mailgun result should be populated', function(done){
 			var keys = {
-				api_user : "ldksafjsd",
+				api_key : "ldksafjsd",
 				domain : "ldksaf.jsd"
 			}
-			nock('https://api+'+keys.api_user+'@api.mailgun.net')
+			nock('https://api+'+keys.api_key+'@api.mailgun.net')
 				.get('/v3/ldksaf.jsd/stats')
 				.reply(200, {"message": "success"});
 			// not sure why its hitting this too
@@ -90,7 +90,7 @@ describe('when email providers are online', function(){
 		it('mailgun err should be populated', function(done){
 			nock.cleanAll()
 			var keys = {
-				api_user : "ldksafjsd",
+				api_key : "ldksafjsd",
 				domain : "ldksaf.jsd"
 			}
 			nock('https://api.mailgun.net')
@@ -167,7 +167,7 @@ describe('when the key validation function is called', function(){
 	});
 	it('mailgun should return an error if the a parameter is missing', function(done){
 		var keys = {
-			api_user : "",
+			api_key : "",
 			domain : "ldksa.fjsd"
 		}
 		nock('https://api.mailgun.net:443/v2')
@@ -182,7 +182,7 @@ describe('when the key validation function is called', function(){
 	});
 	it('mailgun should return an error if the a parameter is missing', function(done){
 		var keys = {
-			api_user : "ldksafjsd",
+			api_key : "ldksafjsd",
 			domain : ""
 		}
 		nock('https://api.mailgun.net:443/v2')
@@ -197,7 +197,7 @@ describe('when the key validation function is called', function(){
 	});
 	it('mailgun should return an error if the domain is malformed', function(done){
 		var keys = {
-			api_user : "sfvjflsv",
+			api_key : "sfvjflsv",
 			domain : "ldksafjsd"
 		}
 		nock('https://api.mailgun.net:443/v2')

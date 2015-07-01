@@ -3,7 +3,7 @@
 var apiKeyValidator = require('./lib/index');
 
 var keys = {
-  api_user: "key-dsfsdfsd",
+  api_key: "key-sdfsdf",
   domain: "example.io"
 }
 apiKeyValidator.validate("mailgun", keys, function(err, result){
