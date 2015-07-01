@@ -1,6 +1,7 @@
-# API Key Validator
+# API Key Validator &nbsp;&nbsp;![image of lock](https://cloud.githubusercontent.com/assets/9973419/7895501/067b4474-0660-11e5-9c3a-d0ef4c141ee2.gif)
 
 [ ![Codeship Status for VennHQ/api-key-validator](https://codeship.com/projects/84e0b4a0-e605-0132-9e91-46daeabcd7f9/status?branch=master)](https://codeship.com/projects/82171)
+
 
 Validate api keys for major email, sms, or push notification providers quickly and easily. Catch the problem early.
 
@@ -44,23 +45,24 @@ apiKeyValidator.validate("sendgrid", keys, function(err, result){
 ```
 
 ## Development
+Want to add a service not currently supported? Feel free to add it yourself and send a pull request!
 
-### Install Dependencies
+#### Install Dependencies
 ``` bash
 npm install
 ```
 
-### Run Examples
+#### Run Examples
 ``` bash
 node example.js
 ```
 
-### Run Tests
+#### Run Tests
 ``` bash
 mocha
 ```
 
-### Adding a New Service Provider
+#### Adding a New Service Provider
 1. Write Failing Tests
   1. If new service type, create a new test file of the form
 		 `test/service_type.js`.
