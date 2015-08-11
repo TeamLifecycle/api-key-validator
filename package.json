@@ -1,7 +1,7 @@
 {
   "name": "api-key-validator",
-  "version": "0.1.4",
-  "description": "A package to easily validate api keys for mailgun, mandrill, postmark, sendgrid, onesignal, parse, pushbots, zeropush, nexmo, plivo, sinch, and twilio",
+  "version": "0.1.5",
+  "description": "A package to easily validate api keys email, sms, push and web push service providers",
   "main": "lib/index.js",
   "directories": {
     "test": "test"

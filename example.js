@@ -6,7 +6,7 @@ var keys = {
   api_key: "key-sdfsdf",
   domain: "example.io"
 }
-apiKeyValidator.validate("mailgun", keys, function(err, result){
+apiKeyValidator.validate("roost", keys, function(err, result){
   if(err)console.log("invalid!");
   if(result)console.log("valid!");
 })
